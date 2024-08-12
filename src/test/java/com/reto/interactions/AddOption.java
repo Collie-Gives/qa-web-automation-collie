@@ -21,7 +21,7 @@ public class AddOption {
                 //boolean datoEnable = listaValores.get(iterador).isEnabled();
                 //if((datoUI.contains(producto) && datoEnable)){
                 BOTON_MAS.resolveAllFor(actor).get(0).click();
-                actor.attemptsTo(Wait.aTime(10));
+                actor.attemptsTo(Wait.aTime(5));
                 actor.attemptsTo(Click.on(BOTON_CONTINUE));
                     break;
                 //}
