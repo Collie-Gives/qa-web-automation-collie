@@ -64,7 +64,8 @@ public class RegisterPage {
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target TXT_NUMBER_CARD = the("Number card")
             //.located(By.id("Field-numberInput"))
-            .located(By.xpath("//*[@id=\"card-panel\"]//*[@id='Field-numberInput']"))
+            //.located(By.xpath("//*[@id=\"card-panel\"]//*[@id='Field-numberInput']"))
+            .located(By.xpath("//*[@id='Field-numberInput']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 }
