@@ -39,15 +39,14 @@ public class RegisterPage {
             .located(By.xpath("//*[@role='combobox']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_5));
     public static final Target STATE = the("State")
-            .located(By.xpath("//*[@value='Florida']"))
+            .located(By.xpath("//*[@role='option' and text()='Florida']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_5));
     public static final Target TXT_ZIP_CODE = the("Zip Code")
             .located(By.xpath("//*[@data-test='Zip Code']//*[@type='text']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_5));
     public static final Target CHECK_WAIVER = the("Check waiver")
-            //.located(By.xpath("//*[@name='waiverAcceptance']"))
-            //.located(By.xpath("//*[@data-testid='CheckBoxOutlineBlankIcon']"));
-            .located(By.xpath("//span[contains(text(), 'I accept the waiver agreement *')]"));
+            .located(By.xpath("//span[contains(text(), 'I accept the waiver agreement *')]"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_5));
     public static final Target SIGNATURE_WAIVER = the("Signature waiver")
             .located(By.name("waiverSignature"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_5));
@@ -55,10 +54,9 @@ public class RegisterPage {
             .located(By.xpath("//button[contains(.,'Continue without a team')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target CHECK_SWAG_BAG = the("Check swag bag")
-            //.located(By.xpath("//*[@data-testid='CheckBoxOutlineBlankIcon']"))
-            .located(By.xpath("//*[@type='checkbox']"))
+            //.located(By.xpath("(//*[@type='checkbox'])[1]"))
+            .located(By.xpath("(//*[@type='checkbox'])"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
-
     public static final Target BOTON_SKIP = the("Button skip")
             .located(By.xpath("//button[contains(.,'Skip')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
