@@ -17,14 +17,10 @@ public class AddOption {
         return Task.where(actor -> {
             List<WebElementFacade> listaValores = BOTON_MAS.resolveAllFor(actor);
             for (int iterador = 0; iterador < listaValores.size(); iterador++) {
-                //String datoUI = listaValores.get(iterador).getText();
-                //boolean datoEnable = listaValores.get(iterador).isEnabled();
-                //if((datoUI.contains(producto) && datoEnable)){
                 BOTON_MAS.resolveAllFor(actor).get(0).click();
                 actor.attemptsTo(Wait.aTime(5));
                 actor.attemptsTo(Click.on(BOTON_CONTINUE));
-                    break;
-                //}
+                break;
             }
         });
     }
