@@ -63,17 +63,17 @@ public class RegisterPage {
             .located(By.xpath("//button[contains(.,'Continue without a team')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target CHECK_SWAG_BAG = the("Check swag bag")
-            //.located(By.xpath("(//*[@type='checkbox'])[1]"))
-            //.located(By.xpath("(//*[@type='checkbox'])"))
             .located(By.xpath("//*[@data-testid='CheckBoxOutlineBlankIcon']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_15));
     public static final Target BOTON_SKIP = the("Button skip")
             .located(By.xpath("//button[contains(.,'Skip')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target TXT_NUMBER_CARD = the("Number card")
-            //.located(By.id("Field-numberInput"))
-            //.located(By.xpath("//*[@id=\"card-panel\"]//*[@id='Field-numberInput']"))
             .located(By.xpath("//*[@id='Field-numberInput']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+
+    public static final Target LABEL_THANK_YOU = the("Label thank you")
+            .located(By.xpath("//*[text()='THANK YOU!']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 }

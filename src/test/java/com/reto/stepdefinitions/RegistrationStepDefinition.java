@@ -1,7 +1,7 @@
 package com.reto.stepdefinitions;
 
-import com.reto.models.DataManager;
-import com.reto.tasks.*;
+import com.reto.tasks.FillPaymentBilling;
+import com.reto.tasks.FillRegister;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -12,6 +12,11 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
 
+import java.util.List;
+import java.util.Map;
+
+import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.RegisterPage.LABEL_THANK_YOU;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -23,49 +28,47 @@ public class RegistrationStepDefinition {
     }
 
     @Given("that the user open the registering page")
-    public void thatTheUserAccessesThePricingPage() {
+    public void thatTheUserAccessesThePricingPage(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("email", information.get(0).get("email"));
+        getInstance().getDatosPrueba().put("password", information.get(0).get("password"));
         theActorCalled("User").attemptsTo(
                 Open.url("https://bike-maintenance-classes-lqqffg.public-staging.colliegives.com/experience/clz7960lt00m00ajx1ajsfgae/options")
         );
     }
-
-
-    @When("I filling in the entire form with the following data {string} {string} {string} {string} {string} {string} {string} {string}")
-    public void fillingInTheEntireFormWithTheFollowingData(String email, String password, String gender, String address, String city, String state, String zip_code, String signature_waiver) {
-        DataManager.getInstance().getDatosPrueba().put("Email",email);
-        DataManager.getInstance().getDatosPrueba().put("Password",password);
-        DataManager.getInstance().getDatosPrueba().put("Gender",gender);
-        DataManager.getInstance().getDatosPrueba().put("Address",address);
-        DataManager.getInstance().getDatosPrueba().put("City",city);
-        DataManager.getInstance().getDatosPrueba().put("State",state);
-        DataManager.getInstance().getDatosPrueba().put("ZipCode",zip_code);
-        DataManager.getInstance().getDatosPrueba().put("SignatureWaiver",signature_waiver);
+     @When("I filling in the entire form with the following data")
+     public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
+         getInstance().getDatosPrueba().put("gender", information.get(0).get("gender"));
+         getInstance().getDatosPrueba().put("address", information.get(0).get("address"));
+         getInstance().getDatosPrueba().put("city", information.get(0).get("city"));
+         getInstance().getDatosPrueba().put("state", information.get(0).get("state"));
+         getInstance().getDatosPrueba().put("zip_code", information.get(0).get("zip_code"));
+         getInstance().getDatosPrueba().put("signature_waiver", information.get(0).get("signature_waiver"));
+         theActorInTheSpotlight().attemptsTo(
+                 FillRegister.inApp()
+         );
+     }
+    @And("I fill in the payment and billing details")
+    public void iFillInThePaymentAndBillingDetails(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("numberCard", information.get(0).get("numberCard"));
+        getInstance().getDatosPrueba().put("expiry_date", information.get(0).get("expiry_date"));
+        getInstance().getDatosPrueba().put("security_code", information.get(0).get("security_code"));
+        getInstance().getDatosPrueba().put("country", information.get(0).get("country"));
+        getInstance().getDatosPrueba().put("full_name_billing", information.get(0).get("full_name_billing"));
+        getInstance().getDatosPrueba().put("address_line_billing", information.get(0).get("address_line_billing"));
+        getInstance().getDatosPrueba().put("city_billing", information.get(0).get("city_billing"));
+        getInstance().getDatosPrueba().put("state_billing", information.get(0).get("state_billing"));
+        getInstance().getDatosPrueba().put("zip_code_billing", information.get(0).get("zip_code_billing"));
         theActorInTheSpotlight().attemptsTo(
-                FillRegister.inApp(email,password,gender,address,city,state,zip_code,signature_waiver)
-        );
-    }
-
-    @And("I fill in the payment and billing details {string} {string} {string} {string} {string} {string} {string} {string} {string}")
-    public void iFillingInThePaymentInformation(String numberCard, String expiry_date, String security_code, String country, String full_name_billing, String address_line_billing, String city_billing, String state_billing, String zip_code_billing) {
-        DataManager.getInstance().getDatosPrueba().put("NumberCard",numberCard);
-        DataManager.getInstance().getDatosPrueba().put("Expiry_date",expiry_date);
-        DataManager.getInstance().getDatosPrueba().put("Security_code",security_code);
-        DataManager.getInstance().getDatosPrueba().put("Country",country);
-        DataManager.getInstance().getDatosPrueba().put("Full_name_billing",full_name_billing);
-        DataManager.getInstance().getDatosPrueba().put("Address_line_billing",address_line_billing);
-        DataManager.getInstance().getDatosPrueba().put("City_billing",city_billing);
-        DataManager.getInstance().getDatosPrueba().put("State_billing",state_billing);
-        DataManager.getInstance().getDatosPrueba().put("Zip_code_billing",zip_code_billing);
-        theActorInTheSpotlight().attemptsTo(
-                FillPaymentBilling.inAppFrame1(numberCard,expiry_date,security_code,country)
+                FillPaymentBilling.inAppFrame1()
         );
         theActorInTheSpotlight().attemptsTo(
-                FillPaymentBilling.inAppFrame2(full_name_billing,address_line_billing,city_billing,state_billing,zip_code_billing)
+                FillPaymentBilling.inAppFrame2()
         );
     }
     @Then("Payment confirmation is successful")
     public void paymentConfirmationIsSuccessful() {
         theActorInTheSpotlight().attemptsTo(
-                Ensure.that("").isEqualTo(""));
+                Ensure.that(LABEL_THANK_YOU).isDisplayed());
     }
+
 }
