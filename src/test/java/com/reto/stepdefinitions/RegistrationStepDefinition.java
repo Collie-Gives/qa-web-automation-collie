@@ -37,6 +37,7 @@ public class RegistrationStepDefinition {
     }
      @When("I filling in the entire form with the following data")
      public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
+         getInstance().getDatosPrueba().put("phone_number", information.get(0).get("phone_number"));
          getInstance().getDatosPrueba().put("gender", information.get(0).get("gender"));
          getInstance().getDatosPrueba().put("address", information.get(0).get("address"));
          getInstance().getDatosPrueba().put("city", information.get(0).get("city"));
@@ -49,7 +50,7 @@ public class RegistrationStepDefinition {
      }
     @And("I fill in the payment and billing details")
     public void iFillInThePaymentAndBillingDetails(List<Map<String, String>> information) {
-        getInstance().getDatosPrueba().put("numberCard", information.get(0).get("numberCard"));
+        getInstance().getDatosPrueba().put("number_card", information.get(0).get("number_card"));
         getInstance().getDatosPrueba().put("expiry_date", information.get(0).get("expiry_date"));
         getInstance().getDatosPrueba().put("security_code", information.get(0).get("security_code"));
         getInstance().getDatosPrueba().put("country", information.get(0).get("country"));

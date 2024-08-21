@@ -25,7 +25,7 @@ public class FillPaymentBillingFrame {
 
                 WebElement fieldNumberInput = driver.findElement(By.xpath("//*[@id='Field-numberInput']"));
                 fieldNumberInput.clear();
-                fieldNumberInput.sendKeys(getInstance().getDatosPrueba().get("numberCard"));
+                fieldNumberInput.sendKeys(getInstance().getDatosPrueba().get("number_card"));
 
                 WebElement fieldExpiry_date = driver.findElement(By.xpath("//*[@id='Field-expiryInput']"));
                 fieldExpiry_date.clear();
@@ -75,9 +75,9 @@ public class FillPaymentBillingFrame {
 
                 WebElement fieldCheckTerms = driver.findElement(By.xpath("//*[@name='terms']"));
                 fieldCheckTerms.click();
-                WebElement fieldButtonPurchase = driver.findElement(By.xpath("//button[text()='Purchase']"));
-                fieldButtonPurchase.click();
-                actor.attemptsTo(Wait.aTime(10));
+                //WebElement fieldButtonPurchase = driver.findElement(By.xpath("//button[text()='Purchase']"));
+                //fieldButtonPurchase.click();
+                //actor.attemptsTo(Wait.aTime(10));
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting");
             }

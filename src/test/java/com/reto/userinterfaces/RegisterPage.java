@@ -32,6 +32,9 @@ public class RegisterPage {
     public static final Target TXT_EMAIL_INFORMATION = the("Email information")
             .located(By.name("attendees[0]email"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target TXT_PHONE_NUMBER = the("Phone number")
+            .located(By.xpath("//*[@data-test='Phone Number']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
     public static final Target COMBOBOX_GENDER = the("Combobox gender")
             .located(By.id("mui-component-select-attendees[0]gender"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
