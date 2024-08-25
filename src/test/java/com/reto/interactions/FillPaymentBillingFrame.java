@@ -73,11 +73,12 @@ public class FillPaymentBillingFrame {
                 fieldZip_code_billing.sendKeys(getInstance().getDatosPrueba().get("zip_code_billing"));
                 driver.switchTo().defaultContent();
 
+                actor.attemptsTo(Wait.aTime(3));
                 WebElement fieldCheckTerms = driver.findElement(By.xpath("//*[@name='terms']"));
                 fieldCheckTerms.click();
                 //WebElement fieldButtonPurchase = driver.findElement(By.xpath("//button[text()='Purchase']"));
                 //fieldButtonPurchase.click();
-                //actor.attemptsTo(Wait.aTime(10));
+                actor.attemptsTo(Wait.aTime(7));
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting");
             }

@@ -1,0 +1,11 @@
+{
+  "url_login": "https://staging.colliegives.com/auth/login",
+  "USER_ERIK": {
+    "email": "erik.agudelo@wearedev.co",
+    "password": "Sebastian18+"
+  },
+  "USER_ALLAN": {
+    "email": "allan@getzoob.com",
+    "password": "allan12345"
+  }
+}

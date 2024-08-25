@@ -1,9 +1,9 @@
 package com.reto.tasks;
 
-import com.reto.interactions.AddOption;
 import com.reto.interactions.SeleniumActions;
 import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
+import com.reto.util.RandomNumber;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -13,15 +13,27 @@ import net.serenitybdd.screenplay.actions.type.Type;
 import org.openqa.selenium.Keys;
 
 import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
+import static com.reto.userinterfaces.NewCampaign.*;
 import static com.reto.userinterfaces.RegisterPage.*;
 
-public class FillRegister {
-    private FillRegister() {
+public class FillCreateCampaign {
+    private FillCreateCampaign() {
     }
 
     public static Performable inApp() {
         return Task.where(actor -> {
-            actor.attemptsTo(AddOption.item());
+            actor.attemptsTo(RandomNumber.getCurrentTime());
+            String nameCampaign = "Campaing Test " + getInstance().getDatosPrueba().get("currentTime");
+            actor.attemptsTo(Click.on(ICON_CAMPAIGN));
+            actor.attemptsTo(Click.on(BUTTON_NEW_CAMPAIGN));
+            actor.attemptsTo(Enter.theValue(nameCampaign).into(TXT_NAME_CAMPAIGN));
+            actor.attemptsTo(Enter.theValue(nameCampaign).into(TXT_NAME_CITY));
+
+
+
+
+
 
             actor.attemptsTo(SeleniumActions.clearAndWriteField("//*[@data-test='Phone Number']", getInstance().getDatosPrueba().get("phone_number")));
 

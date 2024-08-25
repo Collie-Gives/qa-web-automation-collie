@@ -2,6 +2,7 @@ package com.reto.stepdefinitions;
 
 import com.reto.tasks.FillPaymentBilling;
 import com.reto.tasks.FillRegister;
+import com.reto.tasks.LoginRegistration;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -33,6 +34,9 @@ public class RegistrationStepDefinition {
         getInstance().getDatosPrueba().put("password", information.get(0).get("password"));
         theActorCalled("User").attemptsTo(
                 Open.url("https://bike-maintenance-classes-lqqffg.public-staging.colliegives.com/experience/clz7960lt00m00ajx1ajsfgae/options")
+        );
+        theActorInTheSpotlight().attemptsTo(
+                LoginRegistration.inApp()
         );
     }
      @When("I filling in the entire form with the following data")
