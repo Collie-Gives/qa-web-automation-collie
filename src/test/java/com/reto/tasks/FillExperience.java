@@ -1,6 +1,7 @@
 package com.reto.tasks;
 
 import com.reto.interactions.FileUpload;
+import com.reto.interactions.SeleniumActions;
 import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
 import net.serenitybdd.core.Serenity;
@@ -13,6 +14,7 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.nio.file.Path;
 
+import static com.reto.interactions.SeleniumActions.*;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.CreateExperience.*;
 import static com.reto.userinterfaces.NewCampaign.*;
@@ -39,24 +41,53 @@ public class FillExperience {
         return Task.where(actor -> {
             Path imageExperience1 = Path.of(IMAGE_EXPERIENCE_ROAD_RUNNING).toAbsolutePath();
             Path imageExperience2 = Path.of(IMAGE_EXPERIENCE_TRAIL_RUN).toAbsolutePath();
-            actor.attemptsTo(Click.on(LABEL_EXPERIENCE_IMAGES));
+            actor.attemptsTo(Check.whether(Visibility.of(LABEL_EXPERIENCE_IMAGES)).andIfSo(Click.on(LABEL_EXPERIENCE_IMAGES)));
+            actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(Check.whether(Visibility.of(ADD_IMAGE_EXPERIENCE)).andIfSo(Click.on(ADD_IMAGE_EXPERIENCE)));
+            actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(FileUpload.imageFile("//*[@id='fsp-fileUpload']",String.valueOf(imageExperience1)));
+            actor.attemptsTo(Wait.aTime(7));
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_UPLOAD)).andIfSo(Click.on(BUTTON_UPLOAD)));
             actor.attemptsTo(Wait.aTime(7));
-            actor.attemptsTo(Click.on(LABEL_EXPERIENCE_IMAGES));
             actor.attemptsTo(Check.whether(Visibility.of(ADD_IMAGE_EXPERIENCE)).andIfSo(Click.on(ADD_IMAGE_EXPERIENCE)));
+            actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(FileUpload.imageFile("//*[@id='fsp-fileUpload']",String.valueOf(imageExperience2)));
+            actor.attemptsTo(Wait.aTime(7));
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_UPLOAD)).andIfSo(Click.on(BUTTON_UPLOAD)));
             actor.attemptsTo(Wait.aTime(7));
         });
     }
     public static Performable addGeneralSettings() {
         return Task.where(actor -> {
-            actor.attemptsTo(Click.on(LABEL_GENERAL_SETTINGS));
+            actor.attemptsTo(Check.whether(Visibility.of(LABEL_GENERAL_SETTINGS)).andIfSo(Click.on(LABEL_GENERAL_SETTINGS)));
             Serenity.setSessionVariable("urlGeneralSettings").to(URL_GENERAL_SETTINGS.resolveFor(actor).getText());
             String urlGeneralSettings = Serenity.sessionVariableCalled("urlGeneralSettings");
             System.out.println(urlGeneralSettings);
+        });
+    }
+    public static Performable addRegistrationOptions() {
+        return Task.where(actor -> {
+            actor.attemptsTo(Check.whether(Visibility.of(LABEL_REGISTRATION_OPTIONS)).andIfSo(Click.on(LABEL_REGISTRATION_OPTIONS)));
+            actor.attemptsTo(Check.whether(Visibility.of(ADD_REGISTRATION_OPTIONS)).andIfSo(Click.on(ADD_REGISTRATION_OPTIONS)));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Registration Name']]",getInstance().getDatosPrueba().get("registrationName")));
+
+            //actor.attemptsTo(clickField("//div[span/br[@data-text='true']]"));
+            //actor.attemptsTo(clearAndWriteField("//div[span/br[@data-text='true']]",getInstance().getDatosPrueba().get("description")));
+
+            actor.attemptsTo(clickField("//*[@name='attendeesCapEnabled']"));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Maximum Attendees']]",getInstance().getDatosPrueba().get("attendeeCap")));
+            actor.attemptsTo(Click.on(BOTON_SAVE_CONTINUE));
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Minimum Fundraising (USD)']]",getInstance().getDatosPrueba().get("minimumFundraising")));
+            actor.attemptsTo(Click.on(BOTON_SAVE_CONTINUE));
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(clearAndWriteField("//*[@placeholder='Search']",getInstance().getDatosPrueba().get("nameProduct")));
+            actor.attemptsTo(Click.on(OPTION_SWAG_BAG.of(getInstance().getDatosPrueba().get("nameProduct"))));
+            actor.attemptsTo(Click.on(BOTON_SAVE));
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(clickField("//*[@name='attendeesCapEnabled']"));
+            actor.attemptsTo(Click.on(BOTON_CLOSED_REGISTRATION_OPTIONS));
+            actor.attemptsTo(Wait.aTime(7));
         });
     }
 }

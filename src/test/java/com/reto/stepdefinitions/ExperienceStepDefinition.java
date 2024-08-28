@@ -6,6 +6,9 @@ import io.cucumber.java.en.And;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 
+import java.util.List;
+import java.util.Map;
+
 import static com.reto.models.DataManager.getInstance;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -30,5 +33,30 @@ public class ExperienceStepDefinition {
     public void addToTheExperienceGeneralSettings() {
         theActorInTheSpotlight().attemptsTo(FillExperience.addGeneralSettings());
     }
+    @And("And add to the experience registration options with the following data")
+    public void addToTheExperienceRegistrationOptions(List<Map<String, String>> information) {
+        for (int i = 0; i < information.size(); i++) {
+            getInstance().getDatosPrueba().put("registrationName", information.get(i).get("registrationName"));
+            getInstance().getDatosPrueba().put("description", information.get(i).get("description"));
+            getInstance().getDatosPrueba().put("attendeeCap", information.get(i).get("attendeeCap"));
+            getInstance().getDatosPrueba().put("minimumFundraising", information.get(i).get("minimumFundraising"));
+            getInstance().getDatosPrueba().put("nameProduct", information.get(i).get("nameProduct"));
+            theActorInTheSpotlight().attemptsTo(FillExperience.addRegistrationOptions());
+        }
+    }
+    /*
+    @And("And add to the experience {int} registration options with the following data {string} {string} {string} {string}")
+    public void addToTheExperienceRegistrationOptions(int numRegister, String registrationName, String description, String attendeeCap, String nameProduct) {
+        for (int i = 0; i < numRegister; i++) {
+
+        }
+        getInstance().getDatosPrueba().put("registrationName", registrationName);
+        getInstance().getDatosPrueba().put("description", description);
+        getInstance().getDatosPrueba().put("attendeeCap", attendeeCap);
+        getInstance().getDatosPrueba().put("nameProduct", nameProduct);
+        theActorInTheSpotlight().attemptsTo(FillExperience.addRegistrationOptions());
+    }
+
+     */
 
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 
 import java.time.Duration;
 
+import static com.reto.util.ConstantManager.TIME_OUT_10;
 import static com.reto.util.ConstantManager.TIME_OUT_20;
 import static net.serenitybdd.screenplay.targets.Target.the;
 
@@ -36,6 +37,24 @@ public class CreateExperience {
     public static final Target URL_GENERAL_SETTINGS = the("URL general settings")
             .located(By.xpath("//*[@target='_blank']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_REGISTRATION_OPTIONS = the("Label registration options")
+            .located(By.xpath("//*[text()='Registration Options']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target ADD_REGISTRATION_OPTIONS = the("Add registration option")
+            .located(By.xpath("//*[text()='Add Registration Option']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
+    public static final Target OPTION_SWAG_BAG = the("Option state")
+            .locatedBy("//span[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target BOTON_SAVE_CONTINUE = the("Button save continue")
+            .located(By.xpath("//button[text()='Save and continue']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_SAVE = the("Button save")
+            .located(By.xpath("(//button[text()='Save'])[3]"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_CLOSED_REGISTRATION_OPTIONS = the("Button closed registration options")
+            .located(By.xpath("//*[@data-testid='CloseIcon']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 }

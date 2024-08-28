@@ -32,10 +32,28 @@ public class SeleniumActions {
     public static Performable clearField(String xpathExpression) {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
+            Actions actions = new Actions(driver);
             try {
                 WebElement element = driver.findElement(By.xpath(xpathExpression));
-                element.click();
-                element.clear();
+                actions.moveToElement(element)
+                        .click()
+                        .keyDown(Keys.CONTROL)
+                        .sendKeys("a")
+                        .keyUp(Keys.CONTROL)
+                        .sendKeys(Keys.BACK_SPACE)
+                        .perform();
+            } catch (Exception e) {
+                LOGGER.info("Problems with some of the objects when interacting");
+            }
+        });
+    }
+    public static Performable clickField(String xpathExpression) {
+        return Task.where(actor -> {
+            WebDriver driver = getProxiedDriver();
+            Actions actions = new Actions(driver);
+            try {
+                WebElement element = driver.findElement(By.xpath(xpathExpression));
+                actions.moveToElement(element).click().perform();
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting");
             }
