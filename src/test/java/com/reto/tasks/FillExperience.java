@@ -67,7 +67,6 @@ public class FillExperience {
     }
     public static Performable addRegistrationOptions() {
         return Task.where(actor -> {
-            actor.attemptsTo(Check.whether(Visibility.of(LABEL_REGISTRATION_OPTIONS)).andIfSo(Click.on(LABEL_REGISTRATION_OPTIONS)));
             actor.attemptsTo(Check.whether(Visibility.of(ADD_REGISTRATION_OPTIONS)).andIfSo(Click.on(ADD_REGISTRATION_OPTIONS)));
             actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Registration Name']]",getInstance().getDatosPrueba().get("registrationName")));
 
@@ -82,10 +81,10 @@ public class FillExperience {
             actor.attemptsTo(Click.on(BOTON_SAVE_CONTINUE));
             actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(clearAndWriteField("//*[@placeholder='Search']",getInstance().getDatosPrueba().get("nameProduct")));
+            actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(Click.on(OPTION_SWAG_BAG.of(getInstance().getDatosPrueba().get("nameProduct"))));
             actor.attemptsTo(Click.on(BOTON_SAVE));
             actor.attemptsTo(Wait.aTime(5));
-            actor.attemptsTo(clickField("//*[@name='attendeesCapEnabled']"));
             actor.attemptsTo(Click.on(BOTON_CLOSED_REGISTRATION_OPTIONS));
             actor.attemptsTo(Wait.aTime(7));
         });

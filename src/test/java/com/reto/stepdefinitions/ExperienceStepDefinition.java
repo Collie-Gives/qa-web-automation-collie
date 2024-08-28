@@ -3,13 +3,17 @@ package com.reto.stepdefinitions;
 import com.reto.tasks.FillExperience;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.util.List;
 import java.util.Map;
 
 import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.CreateExperience.LABEL_REGISTRATION_OPTIONS;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class ExperienceStepDefinition {
@@ -35,6 +39,7 @@ public class ExperienceStepDefinition {
     }
     @And("And add to the experience registration options with the following data")
     public void addToTheExperienceRegistrationOptions(List<Map<String, String>> information) {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_REGISTRATION_OPTIONS)).andIfSo(Click.on(LABEL_REGISTRATION_OPTIONS)));
         for (int i = 0; i < information.size(); i++) {
             getInstance().getDatosPrueba().put("registrationName", information.get(i).get("registrationName"));
             getInstance().getDatosPrueba().put("description", information.get(i).get("description"));
