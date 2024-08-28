@@ -1,15 +1,18 @@
 package com.reto.stepdefinitions;
 
-import com.reto.tasks.FillCreateCampaign;
+import com.reto.tasks.FillCampaign;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.questions.Visibility;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -21,6 +24,7 @@ import java.util.Map;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
 import static com.reto.userinterfaces.Login.*;
+import static com.reto.userinterfaces.NewCampaign.LABEL_CAMPAIGN_CREATED;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -55,11 +59,9 @@ public class CampaignStepDefinition {
         );
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("email")).into(TXT_EMAIL_LOGIN));
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("password")).into(TXT_PASSWORD_LOGIN));
-        theActorInTheSpotlight().attemptsTo(Click.on(BOTON_LOGIN_LOGIN));
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_LOGIN_LOGIN)).andIfSo(Click.on(BOTON_LOGIN_LOGIN)));
         theActorInTheSpotlight().attemptsTo(Ensure.that(ICON_CAMPAIGN).isDisplayed());
     }
-
-
      @When("create a new campaign with the following data")
      public void createNewCampaignWithTheFollowingData(List<Map<String, String>> information) {
          getInstance().getDatosPrueba().put("city", information.get(0).get("city"));
@@ -70,17 +72,13 @@ public class CampaignStepDefinition {
          getInstance().getDatosPrueba().put("attendees", information.get(0).get("attendees"));
          getInstance().getDatosPrueba().put("teams", information.get(0).get("teams"));
          theActorInTheSpotlight().attemptsTo(
-                 FillCreateCampaign.inApp()
+                 FillCampaign.inApp()
          );
      }
-
-     /*
-    @Then("Payment confirmation is successful")
-    public void paymentConfirmationIsSuccessful() {
+    @Then("verify that the campaign has been created successfully")
+    public void verifyThatTheCampaignHasBeenCreatedSuccessfully() {
         theActorInTheSpotlight().attemptsTo(
-                Ensure.that(LABEL_THANK_YOU).isDisplayed());
+                Ensure.that(LABEL_CAMPAIGN_CREATED).isDisplayed());
     }
-
-     */
 
 }

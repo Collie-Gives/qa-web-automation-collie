@@ -12,6 +12,10 @@ public class ConstantManager {
     public static final long TIME_OUT_30 = 30;
     public static final long TIME_OUT_60 = 60;
     public static final long TIME_OUT_120 = 120;
+    public static String IMAGE_CAMPAIGN_LOGO = "src/test/resources/test-files/campaign_logo.jpg";
+    public static String IMAGE_CAMPAIGN_HERO = "src/test/resources/test-files/campaign_hero.jpg";
+    public static String IMAGE_EXPERIENCE_ROAD_RUNNING = "src/test/resources/test-files/road_running.jpeg";
+    public static String IMAGE_EXPERIENCE_TRAIL_RUN = "src/test/resources/test-files/trail_run.jpeg";
 
     private ConstantManager(){}
 }

@@ -55,7 +55,7 @@ public class SeleniumActions {
                         .keyUp(Keys.CONTROL) // Liberar la tecla Control
                         .sendKeys(Keys.BACK_SPACE) // Eliminar el texto seleccionado
                         .perform();
-                actions.moveToElement(element).click().sendKeys(value).perform();
+                actions.moveToElement(element).sendKeys(value).perform();
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting");
             }
