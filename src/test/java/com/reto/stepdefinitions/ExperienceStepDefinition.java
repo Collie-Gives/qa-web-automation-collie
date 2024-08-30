@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.CreateExperience.LABEL_DONATION_SETTINGS;
 import static com.reto.userinterfaces.CreateExperience.LABEL_REGISTRATION_OPTIONS;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -49,19 +50,20 @@ public class ExperienceStepDefinition {
             theActorInTheSpotlight().attemptsTo(FillExperience.addRegistrationOptions());
         }
     }
-    /*
-    @And("And add to the experience {int} registration options with the following data {string} {string} {string} {string}")
-    public void addToTheExperienceRegistrationOptions(int numRegister, String registrationName, String description, String attendeeCap, String nameProduct) {
-        for (int i = 0; i < numRegister; i++) {
-
-        }
-        getInstance().getDatosPrueba().put("registrationName", registrationName);
-        getInstance().getDatosPrueba().put("description", description);
-        getInstance().getDatosPrueba().put("attendeeCap", attendeeCap);
-        getInstance().getDatosPrueba().put("nameProduct", nameProduct);
-        theActorInTheSpotlight().attemptsTo(FillExperience.addRegistrationOptions());
+    @And("And add to the experience early bird registration {string}")
+    public void addToTheExperienceEarlyBirdRegistration(String urlCode) {
+        getInstance().getDatosPrueba().put("urlCode", urlCode);
+        theActorInTheSpotlight().attemptsTo(FillExperience.addEarlyBirdUrlCode());
+    }
+    @And("And add to the experience waiver {string}")
+    public void addToTheExperienceWaiver(String waiverDescription) {
+        getInstance().getDatosPrueba().put("waiverDescription", waiverDescription);
+        theActorInTheSpotlight().attemptsTo(FillExperience.addWaiver());
+    }
+    @And("And add to the experience donation settings")
+    public void addToTheExperienceDonationSettings() {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_DONATION_SETTINGS)).andIfSo(Click.on(LABEL_DONATION_SETTINGS)));
     }
 
-     */
 
 }

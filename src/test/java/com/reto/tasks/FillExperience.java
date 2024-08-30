@@ -19,6 +19,7 @@ import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.CreateExperience.*;
 import static com.reto.userinterfaces.NewCampaign.*;
 import static com.reto.util.ConstantManager.*;
+import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class FillExperience {
     private FillExperience() {
@@ -69,10 +70,8 @@ public class FillExperience {
         return Task.where(actor -> {
             actor.attemptsTo(Check.whether(Visibility.of(ADD_REGISTRATION_OPTIONS)).andIfSo(Click.on(ADD_REGISTRATION_OPTIONS)));
             actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Registration Name']]",getInstance().getDatosPrueba().get("registrationName")));
-
-            //actor.attemptsTo(clickField("//div[span/br[@data-text='true']]"));
-            //actor.attemptsTo(clearAndWriteField("//div[span/br[@data-text='true']]",getInstance().getDatosPrueba().get("description")));
-
+            actor.attemptsTo(clickField("//*[text()='Description (Recommended)']"));
+            actor.attemptsTo(clearAndWriteField("//*[text()='Description (Recommended)']",getInstance().getDatosPrueba().get("description")));
             actor.attemptsTo(clickField("//*[@name='attendeesCapEnabled']"));
             actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Maximum Attendees']]",getInstance().getDatosPrueba().get("attendeeCap")));
             actor.attemptsTo(Click.on(BOTON_SAVE_CONTINUE));
@@ -87,6 +86,24 @@ public class FillExperience {
             actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(Click.on(BOTON_CLOSED_REGISTRATION_OPTIONS));
             actor.attemptsTo(Wait.aTime(7));
+        });
+    }
+    public static Performable addEarlyBirdUrlCode() {
+        return Task.where(actor -> {
+            theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_EARLY_BIRD)).andIfSo(Click.on(LABEL_EARLY_BIRD)));
+            actor.attemptsTo(Check.whether(Visibility.of(TXT_EARLY_BIRD_URL_CODE)).andIfSo(Click.on(TXT_EARLY_BIRD_URL_CODE)));
+            actor.attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("urlCode")).into(TXT_EARLY_BIRD_URL_CODE));
+            actor.attemptsTo(Click.on(BOTON_SAVE_EARLY_BIRD));
+            actor.attemptsTo(Wait.aTime(5));
+        });
+    }
+    public static Performable addWaiver() {
+        return Task.where(actor -> {
+            theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_WAIVER)).andIfSo(Click.on(LABEL_WAIVER)));
+            actor.attemptsTo(clickField("//*[text()='Copy and Paste the Waiver here']"));
+            actor.attemptsTo(clearAndWriteField("//*[text()='Copy and Paste the Waiver here']",getInstance().getDatosPrueba().get("description")));
+            actor.attemptsTo(Click.on(BOTON_SAVE_WAIVER));
+            actor.attemptsTo(Wait.aTime(5));
         });
     }
 }

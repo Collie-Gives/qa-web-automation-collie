@@ -43,7 +43,6 @@ public class CreateExperience {
     public static final Target ADD_REGISTRATION_OPTIONS = the("Add registration option")
             .located(By.xpath("//*[text()='Add Registration Option']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
-
     public static final Target OPTION_SWAG_BAG = the("Option state")
             .locatedBy("//span[text()='{0}']")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
@@ -56,5 +55,22 @@ public class CreateExperience {
     public static final Target BOTON_CLOSED_REGISTRATION_OPTIONS = the("Button closed registration options")
             .located(By.xpath("//*[@data-testid='CloseIcon']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
-
+    public static final Target LABEL_EARLY_BIRD = the("Label early bird")
+            .located(By.xpath("//*[text()='Early Bird Registration']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target TXT_EARLY_BIRD_URL_CODE = the("Early bird url code")
+            .located(By.xpath("//*[@name='earlyBirdUrlCode']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_SAVE_EARLY_BIRD = the("Button save early bird")
+            .located(By.xpath("//*[@data-test='earlyBirdSaveButton']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_WAIVER = the("Label waiver")
+            .located(By.xpath("//*[text()='Waiver']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_SAVE_WAIVER = the("Button save waiver")
+            .located(By.xpath("//*[@data-test='experienceWaiverSaveButton']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_DONATION_SETTINGS = the("Label donation settings")
+            .located(By.xpath("//*[text()='Donation Settings']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 }
