@@ -73,4 +73,49 @@ public class CreateExperience {
     public static final Target LABEL_DONATION_SETTINGS = the("Label donation settings")
             .located(By.xpath("//*[text()='Donation Settings']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_DONATION_OPTIONS = the("Label donation options")
+            .located(By.xpath("//*[text()='Donation Options']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target ADD_DONATION_OPTIONS = the("Add donation option")
+            .located(By.xpath("//*[text()='add donation option']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target ADD_IMAGE_DONATIONS = the("Add image experience")
+            .located(By.xpath("(//*[@data-testid='PhotoCameraOutlinedIcon'])[1]"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_ADD = the("Button add")
+            .located(By.xpath("//button[text()='Add']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_FUNDRAISING_SETTINGS = the("Label Fundraising Settings")
+            .located(By.xpath("//*[text()='Fundraising Settings']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_STORE = the("Label store")
+            .located(By.xpath("//*[text()='Store']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target ADD_ITEM_STORE = the("Add item store")
+            .located(By.xpath("//*[text()='Add Item']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target OPTION_STORE = the("Option store")
+            .locatedBy("//*[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target LABEL_INDIVIDUAL_FUNDRAISING = the("Label Fundraising Settings")
+            .located(By.xpath("//*[text()='Fundraising Settings']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_TEAM_SETTINGS = the("Label team settings")
+            .located(By.xpath("//*[text()='Team Settings']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_SAVE_TEAM_SETTINGS = the("Button save team settings")
+            .located(By.xpath("//*[@data-test='teamFundraisingSaveButton']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target LABEL_BIB_ASSIGNMENT = the("Label team settings")
+            .located(By.xpath("//*[text()='Bib Assignment']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target ADD_BIB_POOL = the("Add bib pool")
+            .located(By.xpath("//*[text()='Add Bib Pool']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target OPTION_ALLOCATION = the("Option allocation")
+            .locatedBy("//*[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target BOTON_SAVE_BIB_POOL = the("Button save bib pool")
+            .located(By.xpath("//*[@data-test='bibPoolSaveButton']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 }

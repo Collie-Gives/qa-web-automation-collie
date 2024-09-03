@@ -1,7 +1,6 @@
 package com.reto.tasks;
 
 import com.reto.interactions.FileUpload;
-import com.reto.interactions.SeleniumActions;
 import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
 import net.serenitybdd.core.Serenity;
@@ -14,10 +13,12 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.nio.file.Path;
 
-import static com.reto.interactions.SeleniumActions.*;
+import static com.reto.interactions.SeleniumActions.clearAndWriteField;
+import static com.reto.interactions.SeleniumActions.clickField;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.CreateExperience.*;
-import static com.reto.userinterfaces.NewCampaign.*;
+import static com.reto.userinterfaces.NewCampaign.BOTON_MANAGE_CAMPAIGN;
+import static com.reto.userinterfaces.NewCampaign.BUTTON_UPLOAD;
 import static com.reto.util.ConstantManager.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -104,6 +105,51 @@ public class FillExperience {
             actor.attemptsTo(clearAndWriteField("//*[text()='Copy and Paste the Waiver here']",getInstance().getDatosPrueba().get("description")));
             actor.attemptsTo(Click.on(BOTON_SAVE_WAIVER));
             actor.attemptsTo(Wait.aTime(5));
+        });
+    }
+    public static Performable addDonationsOptions() {
+        return Task.where(actor -> {
+            actor.attemptsTo(Check.whether(Visibility.of(ADD_DONATION_OPTIONS)).andIfSo(Click.on(ADD_DONATION_OPTIONS)));
+            Path imageDonations = Path.of(IMAGE_DONATIONS).toAbsolutePath();
+            actor.attemptsTo(Check.whether(Visibility.of(ADD_IMAGE_DONATIONS)).andIfSo(Click.on(ADD_IMAGE_DONATIONS)));
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(FileUpload.imageFile("//*[@id='fsp-fileUpload']",String.valueOf(imageDonations)));
+            actor.attemptsTo(Wait.aTime(7));
+            actor.attemptsTo(Check.whether(Visibility.of(BUTTON_UPLOAD)).andIfSo(Click.on(BUTTON_UPLOAD)));
+            actor.attemptsTo(Wait.aTime(7));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Donation Amount']]",getInstance().getDatosPrueba().get("donationAmount")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Description']]",getInstance().getDatosPrueba().get("descriptionDonation")));
+            actor.attemptsTo(Click.on(BOTON_ADD));
+            actor.attemptsTo(Wait.aTime(5));
+        });
+    }
+    public static Performable addStore() {
+        return Task.where(actor -> {
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(clearAndWriteField("//*[@placeholder='Search']",getInstance().getDatosPrueba().get("storeProductName")));
+            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(Click.on(OPTION_STORE.of(getInstance().getDatosPrueba().get("storeProductName"))));
+            actor.attemptsTo(Click.on(BOTON_ADD));
+            actor.attemptsTo(Wait.aTime(5));
+        });
+    }
+    public static Performable addTeamSettings() {
+        return Task.where(actor -> {
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Maximum Teams']]",getInstance().getDatosPrueba().get("maximunTeam")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Maximum Team Members']]",getInstance().getDatosPrueba().get("maximunTeamMembers")));
+            actor.attemptsTo(Click.on(BOTON_SAVE_TEAM_SETTINGS));
+            actor.attemptsTo(Wait.aTime(5));
+        });
+    }
+    public static Performable addBibPool() {
+        return Task.where(actor -> {
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Bib Pool Name']]",getInstance().getDatosPrueba().get("bibPoolName")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Start Number']]",getInstance().getDatosPrueba().get("starNumber")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='End Number']]",getInstance().getDatosPrueba().get("endNumber")));
+            actor.attemptsTo(Wait.aTime(3));
+            actor.attemptsTo(Click.on(OPTION_ALLOCATION.of(getInstance().getDatosPrueba().get("allocation"))));
+            actor.attemptsTo(Click.on(BOTON_SAVE_BIB_POOL));
+            actor.attemptsTo(Wait.aTime(7));
         });
     }
 }

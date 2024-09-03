@@ -1,5 +1,6 @@
 package com.reto.stepdefinitions;
 
+import com.reto.interactions.Wait;
 import com.reto.tasks.FillExperience;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -12,9 +13,9 @@ import net.serenitybdd.screenplay.questions.Visibility;
 import java.util.List;
 import java.util.Map;
 
+import static com.reto.interactions.SeleniumActions.clickField;
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.CreateExperience.LABEL_DONATION_SETTINGS;
-import static com.reto.userinterfaces.CreateExperience.LABEL_REGISTRATION_OPTIONS;
+import static com.reto.userinterfaces.CreateExperience.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class ExperienceStepDefinition {
@@ -63,6 +64,54 @@ public class ExperienceStepDefinition {
     @And("And add to the experience donation settings")
     public void addToTheExperienceDonationSettings() {
         theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_DONATION_SETTINGS)).andIfSo(Click.on(LABEL_DONATION_SETTINGS)));
+    }
+    @And("And add to the experience donation options")
+    public void addToTheExperienceDonationOptions(List<Map<String, String>> information) {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_DONATION_OPTIONS)).andIfSo(Click.on(LABEL_DONATION_OPTIONS)));
+        for (int i = 0; i < information.size(); i++) {
+            getInstance().getDatosPrueba().put("donationAmount", information.get(i).get("donationAmount"));
+            getInstance().getDatosPrueba().put("descriptionDonation", information.get(i).get("descriptionDonation"));
+            theActorInTheSpotlight().attemptsTo(FillExperience.addDonationsOptions());
+        }
+    }
+    @And("And add to the experience fundraising settings")
+    public void addToTheExperienceFundraisingSettings() {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_FUNDRAISING_SETTINGS)).andIfSo(Click.on(LABEL_FUNDRAISING_SETTINGS)));
+    }
+
+    @And("And add to the experience store the product")
+    public void addToTheExperienceFundraisingSettings(List<Map<String, String>> information) {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_STORE)).andIfSo(Click.on(LABEL_STORE)));
+        theActorInTheSpotlight().attemptsTo(clickField("(//span[contains(@class, 'MuiSwitch-switchBase')]//input[@type='checkbox'])[6]"));
+        for (int i = 0; i < information.size(); i++) {
+            getInstance().getDatosPrueba().put("storeProductName", information.get(i).get("storeProductName"));
+            theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(ADD_ITEM_STORE)).andIfSo(Click.on(ADD_ITEM_STORE)));
+            theActorInTheSpotlight().attemptsTo(FillExperience.addStore());
+        }
+    }
+    @And("And add to the experience individual fundraising")
+    public void addToTheExperienceIndividualFundraising() {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_INDIVIDUAL_FUNDRAISING)).andIfSo(Click.on(LABEL_INDIVIDUAL_FUNDRAISING)));
+    }
+    @And("And add to the experience team settings {string} maximun team and {string} maximun team members")
+    public void addToTheExperienceTeamSetting(String maximunTeam, String maximunTeamMembers) {
+        getInstance().getDatosPrueba().put("maximunTeam", maximunTeam);
+        getInstance().getDatosPrueba().put("maximunTeamMembers", maximunTeamMembers);
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_TEAM_SETTINGS)).andIfSo(Click.on(LABEL_TEAM_SETTINGS)));
+        theActorInTheSpotlight().attemptsTo(FillExperience.addTeamSettings());
+    }
+    @And("And add to the experience bib assignment")
+    public void addToTheExperienceBibAssignment(List<Map<String, String>> information) {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_BIB_ASSIGNMENT)).andIfSo(Click.on(LABEL_BIB_ASSIGNMENT)));
+        for (int i = 0; i < information.size(); i++) {
+            getInstance().getDatosPrueba().put("bibPoolName", information.get(i).get("bibPoolName"));
+            getInstance().getDatosPrueba().put("starNumber", information.get(i).get("starNumber"));
+            getInstance().getDatosPrueba().put("endNumber", information.get(i).get("endNumber"));
+            getInstance().getDatosPrueba().put("allocation", information.get(i).get("allocation"));
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
+            theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(ADD_BIB_POOL)).andIfSo(Click.on(ADD_BIB_POOL)));
+            theActorInTheSpotlight().attemptsTo(FillExperience.addBibPool());
+        }
     }
 
 
