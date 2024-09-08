@@ -1,6 +1,7 @@
 package com.reto.stepdefinitions;
 
 import com.reto.interactions.Wait;
+import com.reto.tasks.FillCampaignPages;
 import com.reto.tasks.FillExperience;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -8,6 +9,7 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.conditions.Check;
+import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.util.List;
@@ -15,7 +17,10 @@ import java.util.Map;
 
 import static com.reto.interactions.SeleniumActions.clickField;
 import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.CampaignPages.LABEL_CAMPAIGN_PAGES;
+import static com.reto.userinterfaces.CampaignPages.LABEL_EXPERIENCE_LANDING;
 import static com.reto.userinterfaces.CreateExperience.*;
+import static com.reto.userinterfaces.NewCampaign.LABEL_CAMPAIGN_CREATED;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
 public class ExperienceStepDefinition {
@@ -113,6 +118,13 @@ public class ExperienceStepDefinition {
             theActorInTheSpotlight().attemptsTo(FillExperience.addBibPool());
         }
     }
-
+    @And("And add the our story the title {string} and description {string} in experience landing page")
+    public void addToCampaignPage(String ourStoryTitle, String ourStoryDescription) {
+        getInstance().getDatosPrueba().put("ourStoryTitle", ourStoryTitle);
+        getInstance().getDatosPrueba().put("ourStoryDescription", ourStoryDescription);
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(LABEL_CAMPAIGN_PAGES)).andIfSo(Click.on(LABEL_CAMPAIGN_PAGES)));
+        theActorInTheSpotlight().attemptsTo(Ensure.that(LABEL_EXPERIENCE_LANDING).isDisplayed());
+        theActorInTheSpotlight().attemptsTo(FillCampaignPages.experienceLanding());
+    }
 
 }

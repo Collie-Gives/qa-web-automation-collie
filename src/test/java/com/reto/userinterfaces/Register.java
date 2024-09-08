@@ -7,7 +7,7 @@ import java.time.Duration;
 import static com.reto.util.ConstantManager.*;
 import static net.serenitybdd.screenplay.targets.Target.the;
 
-public class RegisterPage {
+public class Register {
     public static final Target BOTON_MAS = the("Button add icon")
             .located(By.xpath("//*[@data-testid='AddIcon']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
@@ -50,5 +50,17 @@ public class RegisterPage {
     public static final Target LABEL_THANK_YOU = the("Label thank you")
             .located(By.xpath("//*[text()='THANK YOU!']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target SELECT_CAMPAIGN = the("Select campaign")
+            .locatedBy("//*[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target SELECT_EXPERIENCE = the("Select experience")
+            .locatedBy("//*[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target BOTON_REGISTER_NOW = the("Button register now")
+            .located(By.xpath("(//button[contains(.,'Register Now')])[1]"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target OPTION_PARTICIPATE = the("Option participate")
+            .locatedBy("//*[text()='{0}']")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
 
 }

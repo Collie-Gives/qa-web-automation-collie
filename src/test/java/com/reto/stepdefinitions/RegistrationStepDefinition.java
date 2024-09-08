@@ -1,23 +1,31 @@
 package com.reto.stepdefinitions;
 
-import com.reto.tasks.FillPaymentBilling;
-import com.reto.tasks.FillRegister;
-import com.reto.tasks.LoginRegistration;
+import com.reto.interactions.AddOption;
+import com.reto.interactions.SwagBagSelection;
+import com.reto.interactions.Wait;
+import com.reto.tasks.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import net.serenitybdd.core.Serenity;
+import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.util.List;
 import java.util.Map;
 
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.RegisterPage.LABEL_THANK_YOU;
+import static com.reto.userinterfaces.CreateExperience.LABEL_GENERAL_SETTINGS;
+import static com.reto.userinterfaces.CreateExperience.URL_GENERAL_SETTINGS;
+import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
+import static com.reto.userinterfaces.Register.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -27,17 +35,21 @@ public class RegistrationStepDefinition {
     public void prepareStage() {
         OnStage.setTheStage(new OnlineCast());
     }
-
-    @Given("that the user open the registering page")
-    public void thatTheUserAccessesThePricingPage(List<Map<String, String>> information) {
-        getInstance().getDatosPrueba().put("email", information.get(0).get("email"));
-        getInstance().getDatosPrueba().put("password", information.get(0).get("password"));
-        theActorCalled("User").attemptsTo(
-                Open.url("https://bike-maintenance-classes-lqqffg.public-staging.colliegives.com/experience/clz7960lt00m00ajx1ajsfgae/options")
-        );
+    @And("selecting the campaign {string} and experience {string} for registration and ticketing")
+    public void selectingCampaignForRegistrationAndTicketing(String name_campaign, String name_experience) {
+        getInstance().getDatosPrueba().put("name_campaign", name_campaign);
+        getInstance().getDatosPrueba().put("name_experience", name_experience);
         theActorInTheSpotlight().attemptsTo(
-                LoginRegistration.inApp()
+                SelectCampaignAndExperience.inApp()
         );
+    }
+    @And("that the user open the registering page")
+    public void thatTheUserAccessesThePricingPage(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("userRegistration", information.get(0).get("userRegistration"));
+        getInstance().getDatosPrueba().put("passwordRegistration", information.get(0).get("passwordRegistration"));
+        theActorCalled("User").attemptsTo(Open.url(Serenity.sessionVariableCalled("urlGeneralSettings")));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(20));
+        theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
     }
      @When("I filling in the entire form with the following data")
      public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
@@ -52,6 +64,39 @@ public class RegistrationStepDefinition {
                  FillRegister.inApp()
          );
      }
+    @And("now choose how you want to participate: {string} with: {string} and {string}")
+    public void nowChooseHowYouWantToParticipateOption1(String data1, String data2, String data3) {
+        getInstance().getDatosPrueba().put("optionTeam", data1);
+        getInstance().getDatosPrueba().put("nameTeam", data2);
+        getInstance().getDatosPrueba().put("goalTeam", data3);
+        theActorInTheSpotlight().attemptsTo(FillTeam.inApp());
+    }
+    @And("now choose how you want to participate: {string} with: {string}")
+    public void nowChooseHowYouWantToParticipateOption2(String data1, String data2) {
+        getInstance().getDatosPrueba().put("optionTeam", data1);
+        getInstance().getDatosPrueba().put("nameTeam", data2);
+        theActorInTheSpotlight().attemptsTo(FillTeam.inApp());
+    }
+    @And("now choose how you want to participate: {string}")
+    public void nowChooseHowYouWantToParticipateOption3(String data1) {
+        getInstance().getDatosPrueba().put("optionTeam", data1);
+        theActorInTheSpotlight().attemptsTo(FillTeam.inApp());
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(7));
+    }
+    @And("now swag bag selection")
+    public void swagBagSelection() {
+        theActorInTheSpotlight().attemptsTo(SwagBagSelection.inApp());
+    }
+    @And("would you like to buy something?")
+    public void wouldYouLikeToBuySomething() {
+        theActorInTheSpotlight().attemptsTo(Click.on(BOTON_CONTINUE));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(7));
+    }
+    @And("would you like to make a donation")
+    public void wouldYouLikeToMakeDonation() {
+        theActorInTheSpotlight().attemptsTo(Click.on(BOTON_SKIP));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
+    }
     @And("I fill in the payment and billing details")
     public void iFillInThePaymentAndBillingDetails(List<Map<String, String>> information) {
         getInstance().getDatosPrueba().put("number_card", information.get(0).get("number_card"));

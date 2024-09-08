@@ -1,7 +1,9 @@
 package com.reto.stepdefinitions;
 
+import com.reto.interactions.Wait;
 import com.reto.tasks.FillCampaign;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,7 +26,7 @@ import java.util.Map;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
 import static com.reto.userinterfaces.Login.*;
-import static com.reto.userinterfaces.NewCampaign.LABEL_CAMPAIGN_CREATED;
+import static com.reto.userinterfaces.NewCampaign.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -79,6 +81,14 @@ public class CampaignStepDefinition {
     public void verifyThatTheCampaignHasBeenCreatedSuccessfully() {
         theActorInTheSpotlight().attemptsTo(
                 Ensure.that(LABEL_CAMPAIGN_CREATED).isDisplayed());
+    }
+    @And("And now the campaign is displayed live")
+    public void nowTheCampaignIsDisplayedLive() {
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_DRAFT)).andIfSo(Click.on(BOTON_DRAFT)));
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(OPTION_LIVE_CAMPAIGN)).andIfSo(Click.on(OPTION_LIVE_CAMPAIGN)));
+        theActorInTheSpotlight().attemptsTo(Ensure.that(BOTON_LIVE_CAMPAIGN).isEnabled());
+        theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_LIVE_CAMPAIGN)).andIfSo(Click.on(BOTON_LIVE_CAMPAIGN)));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
     }
 
 }

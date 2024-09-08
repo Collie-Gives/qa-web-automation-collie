@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/registration.feature",
         glue = "com.reto.stepdefinitions",
+        tags = "@regression_registration",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class RegisterRunner {

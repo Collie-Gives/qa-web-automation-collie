@@ -40,6 +40,15 @@ public class NewCampaign {
     public static final Target BOTON_MANAGE_CAMPAIGN = the("Button manage campaign")
             .located(By.xpath("//button[contains(.,'Manage Campaign')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_DRAFT = the("Button draft")
+            .located(By.xpath("//*[text()='Draft']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target OPTION_LIVE_CAMPAIGN = the("Option live campaign")
+            .located(By.xpath("//*[text()='Live Campaign']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+    public static final Target BOTON_LIVE_CAMPAIGN = the("Button live")
+            .located(By.xpath("//button[contains(.,'Live')]"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 
 }

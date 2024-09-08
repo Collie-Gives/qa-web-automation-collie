@@ -7,7 +7,7 @@ import net.serenitybdd.screenplay.actions.Click;
 
 import java.util.List;
 
-import static com.reto.userinterfaces.RegisterPage.*;
+import static com.reto.userinterfaces.Register.*;
 
 public class SelectState {
     private SelectState() {

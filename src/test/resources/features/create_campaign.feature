@@ -25,7 +25,6 @@ Feature: Create campaign in colliegives.com application
     * And add to the experience registration options with the following data
       | registrationName      | description          | attendeeCap | minimumFundraising | nameProduct      |
       | Registration Champion | Description Champion | 100         | 200                | Champion T-shirt |
-      | Registration Dolphin  | Description Dolphin  | 200         | 300                | Dolphin Jersey   |
     * And add to the experience early bird registration '<urlCode>'
     * And add to the experience waiver '<waiverDescription>'
     * And add to the experience donation settings
@@ -44,8 +43,8 @@ Feature: Create campaign in colliegives.com application
       | bibPoolName | starNumber | endNumber | allocation      |
       | bib test    | 1          | 100       | Top Fundraisers |
       | bit auto    | 101        | 200       | Team Captains   |
-    #* And add the our story the title '<ourStoryTitle>' and description '<ourStoryDescription>' in experience landing page
-    #* And now the campaign is displayed live
+    * And add the our story the title '<ourStoryTitle>' and description '<ourStoryDescription>' in experience landing page
+    * And now the campaign is displayed live
 
     Examples:
       | user      | city  | state   | star_date  | end_date   | fundraising | attendees | teams | experienceName | experienceCategory | urlCode | waiverDescription                                      | ourStoryTitle | ourStoryDescription            |

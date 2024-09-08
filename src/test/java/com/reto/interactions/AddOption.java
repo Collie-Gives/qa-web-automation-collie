@@ -7,7 +7,7 @@ import net.serenitybdd.screenplay.actions.Click;
 
 import java.util.List;
 
-import static com.reto.userinterfaces.RegisterPage.*;
+import static com.reto.userinterfaces.Register.*;
 
 public class AddOption {
     private AddOption() {
@@ -15,8 +15,8 @@ public class AddOption {
 
     public static Performable item() {
         return Task.where(actor -> {
-            List<WebElementFacade> listaValores = BOTON_MAS.resolveAllFor(actor);
-            for (int iterador = 0; iterador < listaValores.size(); iterador++) {
+            List<WebElementFacade> listValue = BOTON_MAS.resolveAllFor(actor);
+            for (int iterator = 0; iterator < listValue.size(); iterator++) {
                 BOTON_MAS.resolveAllFor(actor).get(0).click();
                 actor.attemptsTo(Wait.aTime(5));
                 actor.attemptsTo(Click.on(BOTON_CONTINUE));

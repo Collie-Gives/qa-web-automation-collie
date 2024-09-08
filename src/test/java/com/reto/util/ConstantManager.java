@@ -17,6 +17,9 @@ public class ConstantManager {
     public static String IMAGE_EXPERIENCE_ROAD_RUNNING = "src/test/resources/test-files/road_running.jpeg";
     public static String IMAGE_EXPERIENCE_TRAIL_RUN = "src/test/resources/test-files/trail_run.jpeg";
     public static String IMAGE_DONATIONS = "src/test/resources/test-files/donation.jpg";
+    public static String CREATE_A_TEAM = "Create a team";
+    public static String JOIN_A_TEAM = "Join a team";
+    public static String CONTINUE_WITHOUT_A_TEAM = "Continue without a team";
 
     private ConstantManager(){}
 }

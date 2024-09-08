@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.nio.file.Path;
 
+import static com.reto.interactions.SeleniumActions.*;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
 import static com.reto.userinterfaces.NewCampaign.*;
@@ -32,12 +33,12 @@ public class FillCampaign {
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_NEW_CAMPAIGN)).andIfSo(Click.on(BUTTON_NEW_CAMPAIGN)));
             actor.attemptsTo(Enter.theValue(nameCampaign).into(TXT_NAME_CAMPAIGN));
             actor.attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("city")).into(TXT_NAME_CITY));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//*[@role='combobox']",getInstance().getDatosPrueba().get("state")));
+            actor.attemptsTo(clearAndWriteField("//*[@role='combobox']",getInstance().getDatosPrueba().get("state")));
             actor.attemptsTo(Click.on(OPTION_STATE.of(getInstance().getDatosPrueba().get("state"))));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//label[text()='Start Date']",getInstance().getDatosPrueba().get("star_date")));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//label[text()='End Date']",getInstance().getDatosPrueba().get("end_date")));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//label[text()='Start Time']","12:00 AM"));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//label[text()='End Time']","12:00 PM"));
+            actor.attemptsTo(clearAndWriteField("//label[text()='Start Date']",getInstance().getDatosPrueba().get("star_date")));
+            actor.attemptsTo(clearAndWriteField("//label[text()='End Date']",getInstance().getDatosPrueba().get("end_date")));
+            actor.attemptsTo(clearAndWriteField("//label[text()='Start Time']","12:00 AM"));
+            actor.attemptsTo(clearAndWriteField("//label[text()='End Time']","12:00 PM"));
             actor.attemptsTo(Click.on(BOTON_CONTINUE_CAMPAIGN));
             actor.attemptsTo(Wait.aTime(5));
             actor.attemptsTo(Check.whether(Visibility.of(ADD_IMAGEN_CAMPAIGN)).andIfSo(Click.on(ADD_IMAGEN_CAMPAIGN)));
@@ -53,9 +54,9 @@ public class FillCampaign {
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_UPLOAD)).andIfSo(Click.on(BUTTON_UPLOAD)));
             actor.attemptsTo(Wait.aTime(7));
             actor.attemptsTo(Click.on(BOTON_CONTINUE_CAMPAIGN));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//fieldset[legend/span[text()='Amount (USD)']]",getInstance().getDatosPrueba().get("fundraising")));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//fieldset[legend/span[text()='Attendees']]",getInstance().getDatosPrueba().get("attendees")));
-            actor.attemptsTo(SeleniumActions.clearAndWriteField("//fieldset[legend/span[text()='Teams']]",getInstance().getDatosPrueba().get("teams")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Amount (USD)']]",getInstance().getDatosPrueba().get("fundraising")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Attendees']]",getInstance().getDatosPrueba().get("attendees")));
+            actor.attemptsTo(clearAndWriteField("//fieldset[legend/span[text()='Teams']]",getInstance().getDatosPrueba().get("teams")));
             actor.attemptsTo(Click.on(BOTON_CREATE_CAMPAIGN));
             actor.attemptsTo(Wait.aTime(5));
         });

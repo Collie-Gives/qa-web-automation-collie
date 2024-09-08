@@ -8,7 +8,7 @@ import java.time.Duration;
 import static com.reto.util.ConstantManager.*;
 import static net.serenitybdd.screenplay.targets.Target.the;
 
-public class LoginRegistrationPage {
+public class LoginRegistration {
     public static final Target TXT_EMAIL = the("Email address")
             .located(By.name("email"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));

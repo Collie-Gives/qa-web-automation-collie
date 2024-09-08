@@ -2,6 +2,7 @@ package com.reto.interactions;
 
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.actions.Click;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.reto.userinterfaces.Register.BOTON_CONTINUE;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getProxiedDriver;
 
 public class SwagBagSelection {
@@ -24,6 +26,7 @@ public class SwagBagSelection {
                 WebElement element = driver.findElement(By.xpath("//*[@data-testid='CheckBoxOutlineBlankIcon']"));
                 Actions actions = new Actions(driver);
                 actions.moveToElement(element).click().perform();
+                actor.attemptsTo(Click.on(BOTON_CONTINUE));
             } catch (Exception e) {
                 LOGGER.info("No realizo el click al objeto");
             }
