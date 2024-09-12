@@ -62,6 +62,7 @@ public class CampaignStepDefinition {
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("email")).into(TXT_EMAIL_LOGIN));
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("password")).into(TXT_PASSWORD_LOGIN));
         theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_LOGIN_LOGIN)).andIfSo(Click.on(BOTON_LOGIN_LOGIN)));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
         theActorInTheSpotlight().attemptsTo(Ensure.that(ICON_CAMPAIGN).isDisplayed());
     }
      @When("create a new campaign with the following data")

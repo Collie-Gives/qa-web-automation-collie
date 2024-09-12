@@ -29,8 +29,9 @@ public class LoginRegistration {
                     Enter.theValue(getInstance().getDatosPrueba().get("passwordRegistration")).into(TXT_PASSWORD))
             );
             actor.attemptsTo(Click.on(BOTON_LOGIN));
-            actor.attemptsTo(Wait.aTime(5));
+            actor.attemptsTo(Wait.aTime(8));
             actor.attemptsTo(Check.whether(Visibility.of(BOTON_REGISTER_NOW)).andIfSo(Click.on(BOTON_REGISTER_NOW)));
+            actor.attemptsTo(Wait.aTime(7));
             actor.attemptsTo(Ensure.that(BOTON_CONTINUE).isDisplayed());
         });
     }

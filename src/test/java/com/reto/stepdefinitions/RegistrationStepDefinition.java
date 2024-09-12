@@ -1,12 +1,10 @@
 package com.reto.stepdefinitions;
 
-import com.reto.interactions.AddOption;
 import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
 import com.reto.tasks.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
@@ -14,17 +12,12 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.questions.Visibility;
 
 import java.util.List;
 import java.util.Map;
 
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.CreateExperience.LABEL_GENERAL_SETTINGS;
-import static com.reto.userinterfaces.CreateExperience.URL_GENERAL_SETTINGS;
-import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
 import static com.reto.userinterfaces.Register.*;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
@@ -51,8 +44,10 @@ public class RegistrationStepDefinition {
         theActorInTheSpotlight().attemptsTo(Wait.aTime(20));
         theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
     }
-     @When("I filling in the entire form with the following data")
+     @When("I fill in the whole form with the following data, selecting items from the first option")
      public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
+         getInstance().getDatosPrueba().put("minor", information.get(0).get("minor"));
+         getInstance().getDatosPrueba().put("name_minor", information.get(0).get("name_minor"));
          getInstance().getDatosPrueba().put("phone_number", information.get(0).get("phone_number"));
          getInstance().getDatosPrueba().put("gender", information.get(0).get("gender"));
          getInstance().getDatosPrueba().put("address", information.get(0).get("address"));

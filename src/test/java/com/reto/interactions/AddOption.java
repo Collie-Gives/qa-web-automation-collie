@@ -13,15 +13,13 @@ public class AddOption {
     private AddOption() {
     }
 
-    public static Performable item() {
+    public static Performable item(int items) {
         return Task.where(actor -> {
-            List<WebElementFacade> listValue = BOTON_MAS.resolveAllFor(actor);
-            for (int iterator = 0; iterator < listValue.size(); iterator++) {
+            for (int iterator = 0; iterator < items; iterator++) {
                 BOTON_MAS.resolveAllFor(actor).get(0).click();
                 actor.attemptsTo(Wait.aTime(5));
-                actor.attemptsTo(Click.on(BOTON_CONTINUE));
-                break;
             }
+            actor.attemptsTo(Click.on(BOTON_CONTINUE));
         });
     }
 }

@@ -13,7 +13,7 @@ public class Register {
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target BOTON_CONTINUE = the("Button continue")
             .located(By.xpath("//button[contains(.,'Continue')]"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target COMBOBOX_GENDER = the("Combobox gender")
             .located(By.id("mui-component-select-attendees[0]gender"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
@@ -28,9 +28,6 @@ public class Register {
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
     public static final Target TXT_STATE = the("State")
             .located(By.xpath("//*[@role='combobox']"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
-    public static final Target STATE = the("State")
-            .located(By.xpath("//*[@role='option' and text()='Florida']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
     public static final Target TXT_ZIP_CODE = the("Zip Code")
             .located(By.xpath("//*[@data-test='Zip Code']//*[@type='text']"))
