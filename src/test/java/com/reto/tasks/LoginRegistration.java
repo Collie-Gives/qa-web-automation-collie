@@ -10,10 +10,9 @@ import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Visibility;
 
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.Home.ICON_CAMPAIGN;
 import static com.reto.userinterfaces.LoginRegistration.*;
-import static com.reto.userinterfaces.Register.BOTON_CONTINUE;
-import static com.reto.userinterfaces.Register.BOTON_REGISTER_NOW;
+import static com.reto.userinterfaces.Register.BUTTON_CONTINUE;
+import static com.reto.userinterfaces.Register.BUTTON_REGISTER_NOW;
 
 public class LoginRegistration {
     private LoginRegistration() {
@@ -21,7 +20,7 @@ public class LoginRegistration {
 
     public static Performable inApp() {
         return Task.where(actor -> {
-            actor.attemptsTo(Check.whether(Visibility.of(BOTON_REGISTER_NOW)).andIfSo(Click.on(BOTON_REGISTER_NOW)));
+            actor.attemptsTo(Check.whether(Visibility.of(BUTTON_REGISTER_NOW)).andIfSo(Click.on(BUTTON_REGISTER_NOW)));
             actor.attemptsTo(Check.whether(Visibility.of(TXT_EMAIL)).andIfSo(
                     Enter.theValue(getInstance().getDatosPrueba().get("userRegistration")).into(TXT_EMAIL))
             );
@@ -29,10 +28,10 @@ public class LoginRegistration {
                     Enter.theValue(getInstance().getDatosPrueba().get("passwordRegistration")).into(TXT_PASSWORD))
             );
             actor.attemptsTo(Click.on(BOTON_LOGIN));
-            actor.attemptsTo(Wait.aTime(8));
-            actor.attemptsTo(Check.whether(Visibility.of(BOTON_REGISTER_NOW)).andIfSo(Click.on(BOTON_REGISTER_NOW)));
-            actor.attemptsTo(Wait.aTime(7));
-            actor.attemptsTo(Ensure.that(BOTON_CONTINUE).isDisplayed());
+            actor.attemptsTo(Wait.aTime(10));
+            actor.attemptsTo(Check.whether(Visibility.of(BUTTON_REGISTER_NOW)).andIfSo(Click.on(BUTTON_REGISTER_NOW)));
+            actor.attemptsTo(Wait.aTime(10));
+            actor.attemptsTo(Ensure.that(BUTTON_CONTINUE).isDisplayed());
         });
     }
 }

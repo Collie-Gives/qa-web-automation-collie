@@ -1,6 +1,6 @@
 {
-  "url_login": "https://staging.colliegives.com/auth/login",
-  "url_register_campaign": "https://bike-maintenance-classes-lqqffg.public-staging.colliegives.com/experience/clz7960lt00m00ajx1ajsfgae/options",
+  "URL_LOGIN": "https://staging.colliegives.com/auth/login",
+  "URL_REGISTER": "https://ciclada-silletera-ec4wh0.public-staging.colliegives.com/experience/cm0peoi7j00rp09lha36m9szn",
   "USER_ERIK": {
     "email": "erik.agudelo@wearedev.co",
     "password": "Sebastian18+"

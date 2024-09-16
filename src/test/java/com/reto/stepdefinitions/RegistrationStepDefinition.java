@@ -1,5 +1,7 @@
 package com.reto.stepdefinitions;
 
+import com.reto.interactions.AddOption;
+import com.reto.interactions.FillPaymentBillingFrame;
 import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
 import com.reto.tasks.*;
@@ -40,13 +42,17 @@ public class RegistrationStepDefinition {
     public void thatTheUserAccessesThePricingPage(List<Map<String, String>> information) {
         getInstance().getDatosPrueba().put("userRegistration", information.get(0).get("userRegistration"));
         getInstance().getDatosPrueba().put("passwordRegistration", information.get(0).get("passwordRegistration"));
-        theActorCalled("User").attemptsTo(Open.url(Serenity.sessionVariableCalled("urlGeneralSettings")));
-        theActorInTheSpotlight().attemptsTo(Wait.aTime(20));
-        theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
+        if(Serenity.sessionVariableCalled("urlGeneralSettings") == null){
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(15));
+            theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
+        }else{
+            theActorCalled("User").attemptsTo(Open.url(Serenity.sessionVariableCalled("urlGeneralSettings")));
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(20));
+            theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
+        }
     }
      @When("I fill in the whole form with the following data, selecting items from the first option")
      public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
-         getInstance().getDatosPrueba().put("minor", information.get(0).get("minor"));
          getInstance().getDatosPrueba().put("name_minor", information.get(0).get("name_minor"));
          getInstance().getDatosPrueba().put("phone_number", information.get(0).get("phone_number"));
          getInstance().getDatosPrueba().put("gender", information.get(0).get("gender"));
@@ -72,24 +78,26 @@ public class RegistrationStepDefinition {
         getInstance().getDatosPrueba().put("nameTeam", data2);
         theActorInTheSpotlight().attemptsTo(FillTeam.inApp());
     }
-    @And("now choose how you want to participate: {string}")
-    public void nowChooseHowYouWantToParticipateOption3(String data1) {
-        getInstance().getDatosPrueba().put("optionTeam", data1);
+    @And("now choose how you want to participate")
+    public void nowChooseHowYouWantToParticipateOption3(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("option_team", information.get(0).get("option_team"));
+        getInstance().getDatosPrueba().put("team_name", information.get(0).get("team_name"));
+        getInstance().getDatosPrueba().put("team_fundraising_goal", information.get(0).get("team_fundraising_goal"));
         theActorInTheSpotlight().attemptsTo(FillTeam.inApp());
-        theActorInTheSpotlight().attemptsTo(Wait.aTime(7));
     }
     @And("now swag bag selection")
     public void swagBagSelection() {
         theActorInTheSpotlight().attemptsTo(SwagBagSelection.inApp());
     }
-    @And("would you like to buy something?")
-    public void wouldYouLikeToBuySomething() {
-        theActorInTheSpotlight().attemptsTo(Click.on(BOTON_CONTINUE));
-        theActorInTheSpotlight().attemptsTo(Wait.aTime(7));
+    @And("would you like to buy {int} something?")
+    public void wouldYouLikeToBuySomething(int items) {
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
+        theActorInTheSpotlight().attemptsTo(AddOption.item(items));
+        theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
     }
     @And("would you like to make a donation")
     public void wouldYouLikeToMakeDonation() {
-        theActorInTheSpotlight().attemptsTo(Click.on(BOTON_SKIP));
+        theActorInTheSpotlight().attemptsTo(Click.on(BUTTON_SKIP));
         theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
     }
     @And("I fill in the payment and billing details")
@@ -104,10 +112,10 @@ public class RegistrationStepDefinition {
         getInstance().getDatosPrueba().put("state_billing", information.get(0).get("state_billing"));
         getInstance().getDatosPrueba().put("zip_code_billing", information.get(0).get("zip_code_billing"));
         theActorInTheSpotlight().attemptsTo(
-                FillPaymentBilling.inAppFrame1()
+                FillPaymentBillingFrame.inAppFrame1()
         );
         theActorInTheSpotlight().attemptsTo(
-                FillPaymentBilling.inAppFrame2()
+                FillPaymentBillingFrame.inAppFrame2()
         );
     }
     @Then("Payment confirmation is successful")

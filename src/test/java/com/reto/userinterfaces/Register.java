@@ -8,10 +8,10 @@ import static com.reto.util.ConstantManager.*;
 import static net.serenitybdd.screenplay.targets.Target.the;
 
 public class Register {
-    public static final Target BOTON_MAS = the("Button add icon")
+    public static final Target BUTTON_MAS = the("Button add icon")
             .located(By.xpath("//*[@data-testid='AddIcon']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
-    public static final Target BOTON_CONTINUE = the("Button continue")
+    public static final Target BUTTON_CONTINUE = the("Button continue")
             .located(By.xpath("//button[contains(.,'Continue')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target COMBOBOX_GENDER = the("Combobox gender")
@@ -38,10 +38,10 @@ public class Register {
     public static final Target SIGNATURE_WAIVER = the("Signature waiver")
             .located(By.name("waiverSignature"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
-    public static final Target BOTON_CONTINUE_WITHOUT_TEAM = the("Button continue without team")
-            .located(By.xpath("//button[contains(.,'Continue without a team')]"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
-    public static final Target BOTON_SKIP = the("Button skip")
+    public static final Target LABEL_WAIVER = the("Label waiver")
+            .located(By.xpath("//*[text()='Waiver']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target BUTTON_SKIP = the("Button skip")
             .located(By.xpath("//button[contains(.,'Skip')]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target LABEL_THANK_YOU = the("Label thank you")
@@ -53,11 +53,18 @@ public class Register {
     public static final Target SELECT_EXPERIENCE = the("Select experience")
             .locatedBy("//*[text()='{0}']")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
-    public static final Target BOTON_REGISTER_NOW = the("Button register now")
+    public static final Target BUTTON_REGISTER_NOW = the("Button register now")
             .located(By.xpath("(//button[contains(.,'Register Now')])[1]"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
     public static final Target OPTION_PARTICIPATE = the("Option participate")
             .locatedBy("//*[text()='{0}']")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target SELECT_TEAM = the("Select team")
+            .located(By.xpath("//*[@id='mui-component-select-team']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target SELECT_TEAM_OPTIONS = the("Select team options")
+            .locatedBy("//*[@role='option' and contains(text(), '{0}')]")
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+
 
 }

@@ -38,6 +38,22 @@ public class CampaignStepDefinition {
         OnStage.setTheStage(new OnlineCast());
     }
 
+    @Given("that login with the {string}")
+    public void thatLoginWithTheUrl(String value) {
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
+            JSONObject jsonObject = new JSONObject(content);
+            if (jsonObject.has(value)) {
+                theActorCalled("User").attemptsTo(
+                        Open.url(jsonObject.get(value).toString())
+                );
+            } else {
+                System.out.println("La url a buscar no se encontró en el archivo JSON.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo JSON: " + e.getMessage());
+        }
+    }
     @Given("that login with the following credentials {string}")
     public void thatLoginWithTheFollowingCredentials(String user) {
         try {
