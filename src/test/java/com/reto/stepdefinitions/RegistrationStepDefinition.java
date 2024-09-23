@@ -96,9 +96,14 @@ public class RegistrationStepDefinition {
         theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
     }
     @And("would you like to make a donation")
-    public void wouldYouLikeToMakeDonation() {
-        theActorInTheSpotlight().attemptsTo(Click.on(BUTTON_SKIP));
-        theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
+    public void wouldYouLikeToMakeDonation(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("donation_value", information.get(0).get("donation_value"));
+        getInstance().getDatosPrueba().put("donation_period", information.get(0).get("donation_period"));
+        getInstance().getDatosPrueba().put("employer_match", information.get(0).get("employer_match"));
+        getInstance().getDatosPrueba().put("end_date_donation", information.get(0).get("end_date_donation"));
+        theActorInTheSpotlight().attemptsTo(
+                FillDonation.inApp()
+        );
     }
     @And("I fill in the payment and billing details")
     public void iFillInThePaymentAndBillingDetails(List<Map<String, String>> information) {

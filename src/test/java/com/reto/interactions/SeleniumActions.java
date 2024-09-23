@@ -79,5 +79,16 @@ public class SeleniumActions {
             }
         });
     }
-
+    public static Performable writeFieldAndEnter(String xpathExpression, String value) {
+        return Task.where(actor -> {
+            WebDriver driver = getProxiedDriver();
+            try {
+                WebElement element = driver.findElement(By.xpath(xpathExpression));
+                element.click();
+                element.sendKeys(value + Keys.ENTER);
+            } catch (Exception e) {
+                LOGGER.info("Problems with some of the objects when interacting");
+            }
+        });
+    }
 }

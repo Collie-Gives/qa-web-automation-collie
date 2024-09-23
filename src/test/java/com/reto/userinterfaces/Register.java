@@ -66,5 +66,4 @@ public class Register {
             .locatedBy("//*[@role='option' and contains(text(), '{0}')]")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
 
-
 }
