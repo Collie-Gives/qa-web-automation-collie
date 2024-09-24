@@ -22,7 +22,7 @@ Feature: Registering for to select products to cart
     And I fill in the payment and billing details
       | number_card   | expiry_date   | security_code   | country   | full_name_billing   | address_line_billing   | city_billing   | state_billing   | zip_code_billing   |
       | <number_card> | <expiry_date> | <security_code> | <country> | <full_name_billing> | <address_line_billing> | <city_billing> | <state_billing> | <zip_code_billing> |
-    #Then Payment confirmation is successful
+    Then Payment confirmation is successful
 
     Examples:
       | userLogin | userRegistration                   | passwordRegistration | select_campaign_name | select_experience_name | name_minor | phone_number | gender | address       | city   | state   | zip_code | signature_waiver                | option_team             | team_name      | team_fundraising_goal | donation_value | donation_period | end_date_donation | number_card         | expiry_date | security_code | country  | full_name_billing | address_line_billing | city_billing | state_billing | zip_code_billing |

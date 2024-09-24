@@ -1,89 +1,89 @@
-# Automatización de Pruebas para la aplicacion
-### Descripción y contexto
+### Test Automation for the application
+### Description and context
 ---
 
-Podrás escoger el plan para el software de planificación estratégica e inteligencia empresarial, estos planes puedes pagarlos por periodo mensual o anual, ademas los planes vienen basico y platino. Solo necesitas un computador con conexión a Internet y lo tendrás todo a tu alcance a toda hora y en todo momento.
+You can choose the plan for the strategic planning and business intelligence software, these plans can be paid by monthly or annual period, also the plans come in basic and platinum. You only need a computer with an Internet connection and you will have everything at your fingertips at any time and any place.
 
-Para ejecutar las historia de usuario puedes llamar a cada runner especifico, la ruta de cada clase runner es la siguiente: "src/test/java/com/reto/runners/"
+To run the user story you can call each specific runner, the path of each runner class is as follows: “src/test/java/com/reto/runners/”
 
-### Resumen de codificación
+### Coding summary
 ---
-El código se encuentra documentado y la generación del Documento se realizó con JavaDoc.
+The code is documented and the Document generation was done with JavaDoc.
 
-### Comando para la Ejecución
+### Command for Execution
 ---
-Para la ejecución de la automatización se puede utilizar el siguiente comando para la ejecución de un runner en especial:
+For the execution of the automation the following command can be used for the execution of a particular runner:
 
-gradle clean test --tests "RUTA DEL RUNNER" aggregate -i
+gradle clean test --tests “RUNNER RUNNER” aggregate -i
 
-Ejemplo:
+Example:
 
 gradle clean test --tests com.reto.runners.RegisterRunner aggregate -i
 
 
-### El framework
+### The framework
 ---
 ## BDD
-Se utiliza BDD como framework de automatización para la automatización de los escenarios de prueba, la idea es escribir las pruebas antes de escribir el código fuente, pero en lugar de pruebas unitarias, lo que haremos será escribir pruebas que verifiquen que el comportamiento del código es correcto desde el punto de vista de negocio. Tras escribir las pruebas escribimos el código fuente de la funcionalidad que haga que estas pruebas pasen correctamente. Después refactorizamos el código fuente.
-partimos de historias de usuario, siguiendo el modelo “Como [rol ] quiero [ característica ] para que [los beneficios]”. A partir de aquí, en lugar de describir en 'lenguaje natural' lo que tiene que hacer esa nueva funcionalidad, vamos a usar un lenguaje que nos va a permitir describir todas nuestras funcionalidades de una misma forma, un lenguaje específico para BDD.
+BDD is used as an automation framework for the automation of the test scenarios, the idea is to write the tests before writing the source code, but instead of unit tests, we will write tests that verify that the behavior of the code is correct from the business point of view. After writing the tests we write the source code for the functionality that makes these tests pass correctly. Then we refactor the source code.
+We start from user stories, following the model “As [role ] I want [ feature ] so that [benefits]”. From here, instead of describing in 'natural language' what that new functionality has to do, we are going to use a language that is going to allow us to describe all our functionality in the same way, a BDD-specific language.
 ## Gherkin
-Se utiliza Gherkin como lenguaje de desarrollo de las funcionalidades dado que es un lenguaje comprensible por humanos y por ordenadores, con el vamos a definir el comportamiento de la página que vamos a automatizar.
-Se trata de un lenguaje fácil de leer, fácil de entender y fácil de escribir. Utilizar Gherkin nos va a permitir crear una documentación viva a la vez que automatizamos los tests, haciéndolo además con un lenguaje que puede entender negocio.
-Lo bueno de Gherkin es que para empezar a hacer BDD sólo nos hace falta conocer 5 palabras, con las que construiremos sentencias con las que vamos a describir las funcionalidades:
-- Feature: Indica el nombre de la funcionalidad que vamos a probar. Debe ser un título claro y explícito. Incluimos aquí una descripción en forma de historia de usuario: “Como [rol] quiero [característica] para que [los beneficios]”. Sobre esta descripción empezaremos a construir nuestros escenarios de prueba.
-- Scenario: Describe cada escenario que vamos a probar.
--	Given: Provee contexto para el escenario en que se va a ejecutar el test, tales como punto donde se ejecuta el test, o prerequisitos en los datos. Incluye los pasos necesarios para poner al sistema en el estado que se desea probar.
--	When: Especifica el conjunto de acciones que lanzan el test. La interacción del usuario que acciona la funcionalidad que deseamos testear.
--	Then: Especifica el resultado esperado en el test. Observamos los cambios en el sistema y vemos si son los deseados.
-     Lo normal es probar distintos escenarios para comprobar una determinada funcionalidad. De esta forma vamos a pasar de nuestras historias de usuario a pruebas de comportamiento automatizables.
+Gherkin is used as a language of development of the functionalities since it is a language understandable by humans and computers, with it we are going to define the behavior of the page that we are going to automate.
+It is a language easy to read, easy to understand and easy to write. Using Gherkin will allow us to create a living documentation at the same time that we automate the tests, doing it with a language that business can understand.
+The good thing about Gherkin is that to start making BDD we only need to know 5 words, with which we will build sentences with which we are going to describe the functionalities:
+- Feature: indicates the name of the functionality we are going to test. It must be a clear and explicit title. We include here a description in the form of a user story: “As [role] I want [feature] so that [benefits]”. On this description we will start building our test scenarios.
+- Scenario: Describes each scenario we will test.
+- Given: Provides context for the scenario in which the test will be executed, such as where the test is executed, or prerequisites in the data. It includes the necessary steps to put the system in the state to be tested.
+- When: Specifies the set of actions that launch the test. The user interaction that triggers the functionality to be tested.
+- Then: Specifies the expected result of the test. We observe the changes in the system and see if they are the desired ones.
+  It is normal to test different scenarios to check a certain functionality. In this way we are going from our user stories to automated behavioral tests.
 ## Cucumber
-Se utiliza cucumber como herramienta para para automatizar las pruebas en BDD. Cucumber nos va permitir ejecutar descripciones funcionales en texto plano como pruebas de software automatizadas. Totalmente compatible con el lenguaje Gherkin.
+Cucumber is used as a tool to automate the tests in BDD. Cucumber will allow us to execute functional descriptions in plain text as automated software tests. Fully compatible with the Gherkin language.
 
-### Compilador
+### Compiler
 ---
-Se crea el proyecto sobre Gradle, es una herramienta de automatización de la construcción de nuestro código, es la versión mejorada de Maven, pero intenta llevarlo todo un paso más allá. Para empezar, se apoya en Groovy y en un DSL (Domain Specific Language) para trabajar con un lenguaje sencillo y claro a la hora de construir el build comparado con Maven. Por otro lado, dispone de una gran flexibilidad que permite trabajar con ella utilizando otros lenguajes y no solo Java. Dispone por otro lado de un sistema de gestión de dependencias sólido.
+The project is created on Gradle, it is a tool for automating the construction of our code, it is the improved version of Maven, but it tries to take everything one step further. To begin with, it relies on Groovy and a DSL (Domain Specific Language) to work with a simple and clear language when building the build compared to Maven. On the other hand, it has a great flexibility that allows working with it using other languages and not only Java. On the other hand, it has a solid dependency management system.
 
-### Patrones de desarrollo
+### Development patterns
 ---
-Para el desarrollo de la automatización se utilizaron los siguientes patrones de desarrollo:
+The following development patterns were used for the development of the automation:
 Variables: camelCase
-Funciones: camelCase
-Clases: PascalCase
-Paquetes: camelCase
+Functions: camelCase
+Classes: PascalCase
+Packages: camelCase
 
-Camel Case: El nombre viene porque se asemeja a las dos jorobas de un camello, y se puede dividir en dos tipos:
-– Upper Camel Case, cuando la primera letra de cada una de las palabras es mayúscula. También denominado Pascal Case. Ejemplo: EjemploDeNomenclatura.
-– Lower Camel Case, igual que la anterior con la excepción de que la primera letra es minúscula. Ejemplo: ejemploDeNomenclatura.
-Es muy usada en los #hashTags de Twitter o en lenguajes como Java, PHP, C#…
+Camel Case: The name comes because it resembles the two humps of a camel, and can be divided into two types:
+- Upper Camel Case, when the first letter of each of the words is capitalized. Also called Pascal Case. Example: NomenclatureExample.
+- Lower Camel Case, the same as the previous one with the exception that the first letter is lowercase. Example: exampleOfNomenclature.
+  It is widely used in Twitter #hashTags or in languages such as Java, PHP, C#...
 
-### Prácticas de automatización
+### Automation practices.
 ---
-Un proyecto donde se ejemplifica el uso del patrón serenity
-[screenplay](http://thucydides.info/docs/serenity-staging/#_serenity_and_the_screenplay_pattern) con cucumber y gradle.
+A project where the use of the serenity pattern is exemplified.
+[screenplay](http://thucydides.info/docs/serenity-staging/#_serenity_and_the_screenplay_pattern) with cucumber and gradle.
 
-Los tests usan tareas (tasks), interacciones (interactions), preguntas (questions), elementos de páginas (user_interface) y basicamente se tiene la siguiente estructura a nivel de proyecto de automatización.
+The tests use tasks (tasks), interactions (interactions), questions (questions), page elements (user_interface) and basically have the following structure at the automation project level.
 
 + model
-  Clases que usan el patrón DTO o relacionadas con el modelo de dominio
+  Classes using the DTO pattern or related to the domain model.
 + tasks
-  Clases que representan tareas que realiza el actor a nivel de proceso de negocio
-+ interacion
-  Clases que representan las interacciones directas con la interfaz de usuario
+  Classes that represent tasks performed by the actor at the business process level.
++ interaction
+  Classes that represent the direct interactions with the user interface
 + user_interface
-  Page Objects y Page Elements. Mapean los objetos de la interfaz de usuario
+  Page Objects and Page Elements. They map the user interface objects
 + questions
-  Objectos usados para consultar acerca del estado de la aplicación
+  Objects used to query about the status of the application.
 
-### Herramienta de automatización utilizado
+### Automation tool used
 ---
-Se utiliza el IDE de Intellij IDEA para el desarrollo de la automatización. Intellij IDEA es una plataforma de desarrollo, diseñada para ser extendida de forma indefinida a través de plug-ins. Fue concebida desde sus orígenes para convertirse en una plataforma de integración de herramientas de desarrollo. No tiene en mente un lenguaje específico, sino que es un IDE genérico, aunque goza de mucha popularidad entre la comunidad de desarrolladores del lenguaje Java usando el plug-in JDT que viene incluido en la distribución estándar del IDE.
-Proporciona herramientas para la gestión de espacios de trabajo, escribir, desplegar, ejecutar y depurar aplicaciones.
+Intellij IDEA IDE is used for automation development. Intellij IDEA is a development platform, designed to be extended indefinitely through plug-ins. It was conceived from its origins to become a platform for integration of development tools. It does not have a specific language in mind, but is a generic IDE, although it enjoys great popularity among the Java language developer community using the JDT plug-in that is included in the standard IDE distribution.
+It provides tools for workspace management, writing, deploying, running and debugging applications.
 
-### Estrategia de automatización
+### Automation Strategy
 ---
-Inicialmente se levantaron los flujos de cada transacción, para conocer el negocio y tener claro que se debia automatizar.
-Una vez claro el alcance se procede con la automatización de las transacciones, para esto se decide automatizar por capas front.
+Initially the flows of each transaction were collected, to know the business and to be clear about what should be automated.
+Once the scope was clear, we proceeded with the automation of the transactions, for this it was decided to automate by front layers.
 
-### La versión utilizada Java y Gradle
+### The version used was Java and Gradle.
 ---
-Para correr el proyecto se necesita Java JDK 17 o superior y Gradle preferiblemente con la versión 8.2 o superior
+To run the project you need Java JDK 17 or higher and Gradle preferably with version 8.2 or higher.
