@@ -1,6 +1,6 @@
 Feature: Create campaign in colliegives.com application
 
-  @smoke
+  @create_campign_draft
   Scenario Outline: Create a successful draft campaign
     Given that login with the following credentials '<user>'
     When create a new campaign with the following data
@@ -12,7 +12,7 @@ Feature: Create campaign in colliegives.com application
       | user      | city  | state   | star_date  | end_date   | fundraising | attendees | teams |
       | USER_ERIK | Miami | Florida | 09/10/2024 | 09/20/2024 | 100         | 20        | 5     |
 
-  @regression
+  @create_campign_adding_experience
   Scenario Outline: Create a successful campaign by adding an experience
     Given that login with the following credentials '<user>'
     When create a new campaign with the following data

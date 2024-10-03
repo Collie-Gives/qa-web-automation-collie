@@ -12,9 +12,10 @@ public class AddOption {
 
     public static Performable item(int items) {
         return Task.where(actor -> {
+            actor.attemptsTo(Wait.aTime(2));
             for (int iterator = 0; iterator < items; iterator++) {
                 BUTTON_MAS.resolveAllFor(actor).get(0).click();
-                actor.attemptsTo(Wait.aTime(5));
+                actor.attemptsTo(Wait.aTime(3));
             }
             actor.attemptsTo(Click.on(BUTTON_CONTINUE));
         });

@@ -22,7 +22,7 @@ public class FillPaymentBillingFrame {
     private FillPaymentBillingFrame() {
     }
 
-    public static Performable inAppFrame1() {
+    public static Performable inAppFrame() {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
             try {
@@ -35,32 +35,20 @@ public class FillPaymentBillingFrame {
                     actor.attemptsTo(clearAndWriteField("//*[@id='Field-cvcInput']", getInstance().getDatosPrueba().get("security_code")));
                     actor.attemptsTo(clearAndWriteField("//*[@id='Field-countryInput']", getInstance().getDatosPrueba().get("country")));
                     driver.switchTo().defaultContent();
-                }
-            } catch (Exception e) {
-                LOGGER.info("Problems with some of the objects when interacting");
-            }
-        });
-    }
 
-    public static Performable inAppFrame2() {
-        return Task.where(actor -> {
-            WebDriver driver = getProxiedDriver();
-            try {
-                List<WebElement> elements = driver.findElements(By.xpath("//*[text()='Pay with other method']"));
-                if (elements.isEmpty()) {
-                    WebElement iframe = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[2]"));
-                    driver.switchTo().frame(iframe);
-                }else{
-                    WebElement iframe = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]"));
-                    driver.switchTo().frame(iframe);
+                    List<WebElement> elementsSamePersonalAddress = driver.findElements(By.xpath("//*[@class='StripeElement']"));
+                    if (elementsSamePersonalAddress.size() >= 2) {
+                        WebElement iframe2 = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[2]"));
+                        driver.switchTo().frame(iframe2);
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
+                        actor.attemptsTo(Wait.aTime(2));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
+                        driver.switchTo().defaultContent();
+                    }
                 }
-                actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
-                actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
-                actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
-                actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
-                actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
-                driver.switchTo().defaultContent();
-                actor.attemptsTo(Wait.aTime(3));
                 actor.attemptsTo(clickField("//*[@name='terms']"));
                 //actor.attemptsTo(clickField("//button[text()='Purchase']"));
                 actor.attemptsTo(Wait.aTime(7));
@@ -69,5 +57,4 @@ public class FillPaymentBillingFrame {
             }
         });
     }
-
 }

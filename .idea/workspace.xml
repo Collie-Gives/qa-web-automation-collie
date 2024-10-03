@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="216dd914-c724-4c1a-b8de-976aebe5f62c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/reto/runners/RegisterSelectCampaignRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/features/registration_selecting_campaign.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/interactions/AddOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/interactions/AddOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/interactions/FillPaymentBillingFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/interactions/FillPaymentBillingFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/interactions/SeleniumActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/interactions/SeleniumActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/stepdefinitions/RegistrationStepDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/stepdefinitions/RegistrationStepDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/tasks/FillDonation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/tasks/FillDonation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/create_campaign.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/create_campaign.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/registration.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/registration.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/features/registrationFullData.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/validation_user_data.feature" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2mUh0Gy158O3fGw8sCXrbCpZ9fn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/ERIK/Collie/AUTOMATIZACION/qa-web-automation-collie/src/test/resources/features",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\ERIK\Collie\AUTOMATIZACION\qa-web-automation-collie\src\test\resources\features" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.reto.runners" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="RegisterRunner" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.reto.runners.RegisterRunner&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="qa-web-automation-collie" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="qa-web-automation-collie" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.RegisterRunner" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="216dd914-c724-4c1a-b8de-976aebe5f62c" name="Changes" comment="" />
+      <created>1727136837717</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727136837717</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/reto/interactions/FillPaymentBillingFrame.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/reto/interactions/FillPaymentBillingFrame.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

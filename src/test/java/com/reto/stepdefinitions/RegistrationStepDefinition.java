@@ -10,7 +10,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.core.Serenity;
-import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
@@ -116,12 +115,7 @@ public class RegistrationStepDefinition {
         getInstance().getDatosPrueba().put("city_billing", information.get(0).get("city_billing"));
         getInstance().getDatosPrueba().put("state_billing", information.get(0).get("state_billing"));
         getInstance().getDatosPrueba().put("zip_code_billing", information.get(0).get("zip_code_billing"));
-        theActorInTheSpotlight().attemptsTo(
-                FillPaymentBillingFrame.inAppFrame1()
-        );
-        theActorInTheSpotlight().attemptsTo(
-                FillPaymentBillingFrame.inAppFrame2()
-        );
+        theActorInTheSpotlight().attemptsTo(FillPaymentBillingFrame.inAppFrame());
     }
     @Then("Payment confirmation is successful")
     public void paymentConfirmationIsSuccessful() {

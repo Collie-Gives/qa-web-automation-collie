@@ -75,19 +75,31 @@ public class SeleniumActions {
                         .perform();
                 actions.moveToElement(element).sendKeys(value).perform();
             } catch (Exception e) {
-                LOGGER.info("Problems with some of the objects when interacting");
+                LOGGER.info("Problems with some of the objects when interacting: " + value);
             }
         });
     }
-    public static Performable writeFieldAndEnter(String xpathExpression, String value) {
+    public static Performable writeFieldMasFlechaAbajoMasEnter(String xpathExpression, String value) {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
+            Actions actions = new Actions(driver);
             try {
                 WebElement element = driver.findElement(By.xpath(xpathExpression));
-                element.click();
-                element.sendKeys(value + Keys.ENTER);
+                element.sendKeys(value);
+                actor.attemptsTo(Wait.aTime(5));
+                actions.moveToElement(element)
+                        .click() // Hacer clic en el campo para enfocar
+                        .keyDown(Keys.CONTROL) // Mantener la tecla Control (Windows) o Command (Mac)
+                        .sendKeys("a") // Seleccionar todo el texto
+                        .keyUp(Keys.CONTROL) // Liberar la tecla Control
+                        .sendKeys(Keys.BACK_SPACE) // Eliminar el texto seleccionado
+                        .perform();
+                element.sendKeys(value);
+                actor.attemptsTo(Wait.aTime(5));
+                element.sendKeys(Keys.ARROW_DOWN);
+                element.sendKeys(Keys.ENTER);
             } catch (Exception e) {
-                LOGGER.info("Problems with some of the objects when interacting");
+                LOGGER.info("Problems with some of the objects when interacting: " + value);
             }
         });
     }
