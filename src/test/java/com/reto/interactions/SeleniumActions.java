@@ -79,7 +79,7 @@ public class SeleniumActions {
             }
         });
     }
-    public static Performable writeFieldMasFlechaAbajoMasEnter(String xpathExpression, String value) {
+    public static Performable writeFieldMoreDownArrowMoreEnter(String xpathExpression, String value) {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
             Actions actions = new Actions(driver);

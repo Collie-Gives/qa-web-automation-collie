@@ -25,6 +25,7 @@ public class FillRegister {
             String dataItemOption = getInstance().getDatosPrueba().get("name_minor");
             if(dataItemOption == null){
                 actor.attemptsTo(AddOption.item(1));
+                actor.attemptsTo(Wait.aTime(3));
                 actor.attemptsTo(clearAndWriteField("//*[@data-test='Phone Number']", getInstance().getDatosPrueba().get("phone_number")));
                 actor.attemptsTo(Click.on(COMBOBOX_GENDER));
                 actor.attemptsTo(Click.on(SELECT_GENDER.of(getInstance().getDatosPrueba().get("gender"))));
@@ -53,6 +54,7 @@ public class FillRegister {
             }else{
                 int positionObject = 2;
                 actor.attemptsTo(AddOption.item(2));
+                actor.attemptsTo(Wait.aTime(3));
                 actor.attemptsTo(clearAndWriteField("//*[@data-test='Phone Number']", getInstance().getDatosPrueba().get("phone_number")));
                 actor.attemptsTo(Click.on(COMBOBOX_GENDER));
                 actor.attemptsTo(Click.on(SELECT_GENDER.of(getInstance().getDatosPrueba().get("gender"))));

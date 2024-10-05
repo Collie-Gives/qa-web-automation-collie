@@ -32,7 +32,7 @@ public class FillDonation {
                         actor.attemptsTo(clearAndWriteField("//*[@data-test='donationOtherItem']", optionDonation));
                     }
                     if(employerMatch != null){
-                        actor.attemptsTo(writeFieldMasFlechaAbajoMasEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
+                        actor.attemptsTo(writeFieldMoreDownArrowMoreEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
@@ -45,7 +45,7 @@ public class FillDonation {
                         actor.attemptsTo(clearAndWriteField("//*[@data-test='donationOtherItem']", optionDonation));
                     }
                     if(employerMatch != null){
-                        actor.attemptsTo(writeFieldMasFlechaAbajoMasEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
+                        actor.attemptsTo(writeFieldMoreDownArrowMoreEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
@@ -58,7 +58,7 @@ public class FillDonation {
                         actor.attemptsTo(clearAndWriteField("//*[@data-test='donationOtherItem']", optionDonation));
                     }
                     if(employerMatch != null){
-                        actor.attemptsTo(writeFieldMasFlechaAbajoMasEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
+                        actor.attemptsTo(writeFieldMoreDownArrowMoreEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
@@ -71,7 +71,7 @@ public class FillDonation {
                         actor.attemptsTo(clearAndWriteField("//*[@data-test='donationOtherItem']", optionDonation));
                     }
                     if(employerMatch != null){
-                        actor.attemptsTo(writeFieldMasFlechaAbajoMasEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
+                        actor.attemptsTo(writeFieldMoreDownArrowMoreEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
@@ -85,7 +85,7 @@ public class FillDonation {
                         actor.attemptsTo(clearAndWriteField("//*[@data-test='donationOtherItem']", optionDonation));
                     }
                     if(employerMatch != null){
-                        actor.attemptsTo(writeFieldMasFlechaAbajoMasEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
+                        actor.attemptsTo(writeFieldMoreDownArrowMoreEnter("//*[@id='donationFormIntegrationCompany']",employerMatch));
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));

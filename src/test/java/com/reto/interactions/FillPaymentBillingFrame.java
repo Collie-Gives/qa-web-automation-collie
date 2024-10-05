@@ -34,6 +34,10 @@ public class FillPaymentBillingFrame {
                     actor.attemptsTo(clearAndWriteField("//*[@id='Field-expiryInput']", getInstance().getDatosPrueba().get("expiry_date")));
                     actor.attemptsTo(clearAndWriteField("//*[@id='Field-cvcInput']", getInstance().getDatosPrueba().get("security_code")));
                     actor.attemptsTo(clearAndWriteField("//*[@id='Field-countryInput']", getInstance().getDatosPrueba().get("country")));
+                    List<WebElement> elementsPostalCode = driver.findElements(By.xpath("(//*[@id='Field-postalCodeInput'])[1]"));
+                    if (!elementsPostalCode.isEmpty()) {
+                        actor.attemptsTo(clearAndWriteField("(//*[@id='Field-postalCodeInput'])[1]", "12345"));
+                    }
                     driver.switchTo().defaultContent();
 
                     List<WebElement> elementsSamePersonalAddress = driver.findElements(By.xpath("//*[@class='StripeElement']"));
@@ -50,8 +54,8 @@ public class FillPaymentBillingFrame {
                     }
                 }
                 actor.attemptsTo(clickField("//*[@name='terms']"));
-                //actor.attemptsTo(clickField("//button[text()='Purchase']"));
-                actor.attemptsTo(Wait.aTime(7));
+                actor.attemptsTo(clickField("//button[text()='Purchase']"));
+                actor.attemptsTo(Wait.aTime(10));
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting");
             }
