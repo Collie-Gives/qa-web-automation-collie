@@ -89,7 +89,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(8));
+                    theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
                 }
             }
         });

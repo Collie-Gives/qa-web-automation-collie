@@ -40,20 +40,23 @@ public class CampaignStepDefinition {
 
     @Given("that login with the {string}")
     public void thatLoginWithTheUrl(String value) {
-        try {
-            String content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
-            JSONObject jsonObject = new JSONObject(content);
-            if (jsonObject.has(value)) {
-                theActorCalled("User").attemptsTo(
-                        Open.url(jsonObject.get(value).toString())
-                );
-            } else {
-                System.out.println("La url a buscar no se encontró en el archivo JSON.");
+        if (value.contains("https://")) {
+            theActorCalled("User").attemptsTo(Open.url(value));
+        }else{
+            try {
+                String content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
+                JSONObject jsonObject = new JSONObject(content);
+                if (jsonObject.has(value)) {
+                    theActorCalled("User").attemptsTo(Open.url(jsonObject.get(value).toString()));
+                } else {
+                    System.out.println("La url a buscar no se encontró en el archivo JSON o esta vacio en el feature.");
+                }
+            } catch (IOException e) {
+                System.err.println("Error al leer el archivo JSON: " + e.getMessage());
             }
-        } catch (IOException e) {
-            System.err.println("Error al leer el archivo JSON: " + e.getMessage());
         }
     }
+
     @Given("that login with the following credentials {string}")
     public void thatLoginWithTheFollowingCredentials(String user) {
         try {
@@ -72,33 +75,31 @@ public class CampaignStepDefinition {
         } catch (IOException e) {
             System.err.println("Error al leer el archivo JSON: " + e.getMessage());
         }
-        theActorCalled("User").attemptsTo(
-                Open.url(getInstance().getDatosPrueba().get("url_login"))
-        );
+        theActorCalled("User").attemptsTo(Open.url(getInstance().getDatosPrueba().get("url_login")));
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("email")).into(TXT_EMAIL_LOGIN));
         theActorInTheSpotlight().attemptsTo(Enter.theValue(getInstance().getDatosPrueba().get("password")).into(TXT_PASSWORD_LOGIN));
         theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_LOGIN_LOGIN)).andIfSo(Click.on(BOTON_LOGIN_LOGIN)));
         theActorInTheSpotlight().attemptsTo(Wait.aTime(5));
         theActorInTheSpotlight().attemptsTo(Ensure.that(ICON_CAMPAIGN).isDisplayed());
     }
-     @When("create a new campaign with the following data")
-     public void createNewCampaignWithTheFollowingData(List<Map<String, String>> information) {
-         getInstance().getDatosPrueba().put("city", information.get(0).get("city"));
-         getInstance().getDatosPrueba().put("state", information.get(0).get("state"));
-         getInstance().getDatosPrueba().put("star_date", information.get(0).get("star_date"));
-         getInstance().getDatosPrueba().put("end_date", information.get(0).get("end_date"));
-         getInstance().getDatosPrueba().put("fundraising", information.get(0).get("fundraising"));
-         getInstance().getDatosPrueba().put("attendees", information.get(0).get("attendees"));
-         getInstance().getDatosPrueba().put("teams", information.get(0).get("teams"));
-         theActorInTheSpotlight().attemptsTo(
-                 FillCampaign.inApp()
-         );
-     }
+
+    @When("create a new campaign with the following data")
+    public void createNewCampaignWithTheFollowingData(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("city", information.get(0).get("city"));
+        getInstance().getDatosPrueba().put("state", information.get(0).get("state"));
+        getInstance().getDatosPrueba().put("star_date", information.get(0).get("star_date"));
+        getInstance().getDatosPrueba().put("end_date", information.get(0).get("end_date"));
+        getInstance().getDatosPrueba().put("fundraising", information.get(0).get("fundraising"));
+        getInstance().getDatosPrueba().put("attendees", information.get(0).get("attendees"));
+        getInstance().getDatosPrueba().put("teams", information.get(0).get("teams"));
+        theActorInTheSpotlight().attemptsTo(FillCampaign.inApp());
+    }
+
     @Then("verify that the campaign has been created successfully")
     public void verifyThatTheCampaignHasBeenCreatedSuccessfully() {
-        theActorInTheSpotlight().attemptsTo(
-                Ensure.that(LABEL_CAMPAIGN_CREATED).isDisplayed());
+        theActorInTheSpotlight().attemptsTo(Ensure.that(LABEL_CAMPAIGN_CREATED).isDisplayed());
     }
+
     @And("And now the campaign is displayed live")
     public void nowTheCampaignIsDisplayedLive() {
         theActorInTheSpotlight().attemptsTo(Check.whether(Visibility.of(BOTON_DRAFT)).andIfSo(Click.on(BOTON_DRAFT)));

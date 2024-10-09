@@ -50,6 +50,12 @@ public class RegistrationStepDefinition {
             theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
         }
     }
+    @And("that the user open the donation page")
+    public void thatTheUserAccessesTheDonationPage(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("userDonation", information.get(0).get("userDonation"));
+        getInstance().getDatosPrueba().put("passwordDonation", information.get(0).get("passwordDonation"));
+        theActorInTheSpotlight().attemptsTo(LoginDonation.inApp());
+    }
      @When("I fill in the whole form with the following data, selecting items from the first option")
      public void iFillingInTheEntireFormWithTheFollowingData(List<Map<String, String>> information) {
          getInstance().getDatosPrueba().put("name_minor", information.get(0).get("name_minor"));
