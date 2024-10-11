@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="216dd914-c724-4c1a-b8de-976aebe5f62c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/reto/tasks/FillRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/reto/tasks/FillRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/features/donation.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/donation.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/features/registration.feature" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/features/registration.feature" afterDir="false" />
-    </list>
+    <list default="true" id="216dd914-c724-4c1a-b8de-976aebe5f62c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +66,7 @@
       <recent name="com.reto.runners" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RegisterRunner">
+  <component name="RunManager" selected="Gradle.DonationRunner">
     <configuration name="DonationRunner" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
