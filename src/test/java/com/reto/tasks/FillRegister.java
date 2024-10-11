@@ -9,12 +9,13 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Scroll;
 import net.serenitybdd.screenplay.actions.SendKeys;
 import net.serenitybdd.screenplay.actions.type.Type;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 
 import static com.reto.interactions.SeleniumActions.clearAndWriteField;
 import static com.reto.interactions.SeleniumActions.clickField;
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.Register.*;
+import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getProxiedDriver;
 
 public class FillRegister {
     private FillRegister() {
@@ -22,11 +23,17 @@ public class FillRegister {
 
     public static Performable inApp() {
         return Task.where(actor -> {
+            WebDriver driver = getProxiedDriver();
             String dataItemOption = getInstance().getDatosPrueba().get("name_minor");
             if(dataItemOption == null){
                 actor.attemptsTo(AddOption.item(1));
                 actor.attemptsTo(Wait.aTime(3));
                 actor.attemptsTo(clearAndWriteField("//*[@data-test='Phone Number']", getInstance().getDatosPrueba().get("phone_number")));
+                WebElement elementsBirthdate = driver.findElement(By.xpath("//input[@type='tel']"));
+                String inputValue = elementsBirthdate.getAttribute("value");
+                if (inputValue.isEmpty()) {
+                    actor.attemptsTo(clearAndWriteField("//input[@type='tel']", "01/01/2000"));
+                }
                 actor.attemptsTo(Click.on(COMBOBOX_GENDER));
                 actor.attemptsTo(Click.on(SELECT_GENDER.of(getInstance().getDatosPrueba().get("gender"))));
                 actor.attemptsTo(Click.on(TXT_ADDRESS));
@@ -45,6 +52,11 @@ public class FillRegister {
                 actor.attemptsTo(SendKeys.of(Keys.CONTROL, "a").into(TXT_ZIP_CODE));
                 actor.attemptsTo(SendKeys.of(Keys.DELETE).into(TXT_ZIP_CODE));
                 actor.attemptsTo(Type.theValue(getInstance().getDatosPrueba().get("zip_code")).into(TXT_ZIP_CODE));
+
+                WebElement waiverText = driver.findElement(By.id("waiverTextDescription"));
+                waiverText.click();
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = arguments[0].scrollHeight", waiverText);
+
                 actor.attemptsTo(Click.on(CHECK_WAIVER));
                 actor.attemptsTo(Click.on(SIGNATURE_WAIVER));
                 actor.attemptsTo(SendKeys.of(Keys.CONTROL, "a").into(SIGNATURE_WAIVER));
@@ -56,6 +68,11 @@ public class FillRegister {
                 actor.attemptsTo(AddOption.item(2));
                 actor.attemptsTo(Wait.aTime(3));
                 actor.attemptsTo(clearAndWriteField("//*[@data-test='Phone Number']", getInstance().getDatosPrueba().get("phone_number")));
+                WebElement elementsBirthdate = driver.findElement(By.xpath("//input[@type='tel']"));
+                String inputValue = elementsBirthdate.getAttribute("value");
+                if (inputValue.isEmpty()) {
+                    actor.attemptsTo(clearAndWriteField("//input[@type='tel']", "01/01/2000"));
+                }
                 actor.attemptsTo(Click.on(COMBOBOX_GENDER));
                 actor.attemptsTo(Click.on(SELECT_GENDER.of(getInstance().getDatosPrueba().get("gender"))));
                 actor.attemptsTo(Click.on(TXT_ADDRESS));
@@ -74,6 +91,11 @@ public class FillRegister {
                 actor.attemptsTo(SendKeys.of(Keys.CONTROL, "a").into(TXT_ZIP_CODE));
                 actor.attemptsTo(SendKeys.of(Keys.DELETE).into(TXT_ZIP_CODE));
                 actor.attemptsTo(Type.theValue(getInstance().getDatosPrueba().get("zip_code")).into(TXT_ZIP_CODE));
+
+                WebElement waiverText = driver.findElement(By.id("waiverTextDescription"));
+                waiverText.click();
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollTop = arguments[0].scrollHeight", waiverText);
+
                 actor.attemptsTo(Click.on(CHECK_WAIVER));
                 actor.attemptsTo(Click.on(SIGNATURE_WAIVER));
                 actor.attemptsTo(SendKeys.of(Keys.CONTROL, "a").into(SIGNATURE_WAIVER));
