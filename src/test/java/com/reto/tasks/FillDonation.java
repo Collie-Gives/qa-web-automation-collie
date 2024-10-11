@@ -7,8 +7,8 @@ import net.serenitybdd.screenplay.actions.Click;
 
 import static com.reto.interactions.SeleniumActions.*;
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.Register.*;
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static com.reto.userinterfaces.Register.BUTTON_CONTINUE;
+import static com.reto.userinterfaces.Register.BUTTON_SKIP;
 
 public class FillDonation {
     private FillDonation() {
@@ -23,7 +23,7 @@ public class FillDonation {
             switch (optionDonation) {
                 case "0" -> {
                     actor.attemptsTo(Click.on(BUTTON_SKIP));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(8));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
                 case "50" -> {
                     actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
@@ -36,7 +36,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    actor.attemptsTo(Wait.aTime(8));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
                 case "75" -> {
                     actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='75']"));
@@ -49,7 +49,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(8));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
                 case "100" -> {
                     actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='100']"));
@@ -62,7 +62,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(8));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
                 case "150" -> {
                     actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='150']"));
@@ -75,7 +75,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(8));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
                 default -> {
                     actor.attemptsTo(clickField("//*[@data-test='donationOtherItem']"));
@@ -89,7 +89,7 @@ public class FillDonation {
                         actor.attemptsTo(clickField("//*[@data-test='donationOptionBubble']//span[text()='50']"));
                     }
                     actor.attemptsTo(Click.on(BUTTON_CONTINUE));
-                    theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
+                    actor.attemptsTo(Wait.aTime(10));
                 }
             }
         });

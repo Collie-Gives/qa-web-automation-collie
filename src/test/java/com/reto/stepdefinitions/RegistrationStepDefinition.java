@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.reto.models.DataManager.getInstance;
-import static com.reto.userinterfaces.Register.*;
+import static com.reto.userinterfaces.Register.LABEL_THANK_YOU;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 

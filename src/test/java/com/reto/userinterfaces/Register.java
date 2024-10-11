@@ -65,5 +65,8 @@ public class Register {
     public static final Target SELECT_TEAM_OPTIONS = the("Select team options")
             .locatedBy("//*[@role='option' and contains(text(), '{0}')]")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target BUTTON_START_OVER = the("Button start over")
+            .located(By.xpath("//button[text()='Start Over']"))
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 }

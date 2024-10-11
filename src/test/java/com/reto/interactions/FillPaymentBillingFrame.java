@@ -10,8 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static com.reto.interactions.SeleniumActions.clearAndWriteField;
-import static com.reto.interactions.SeleniumActions.clickField;
+import static com.reto.interactions.SeleniumActions.*;
 import static com.reto.models.DataManager.getInstance;
 import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getProxiedDriver;
 
@@ -25,6 +24,7 @@ public class FillPaymentBillingFrame {
     public static Performable inAppFrame() {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
+            actor.attemptsTo(Wait.aTime(5));
             try {
                 List<WebElement> elements = driver.findElements(By.xpath("//*[text()='Pay with other method']"));
                 if (elements.isEmpty()) {
@@ -38,6 +38,8 @@ public class FillPaymentBillingFrame {
                     if (!elementsPostalCode.isEmpty()) {
                         actor.attemptsTo(clearAndWriteField("(//*[@id='Field-postalCodeInput'])[1]", "12345"));
                     }
+                    actor.attemptsTo(clickField("//*[@id='Field-cvcInput']"));
+                    actor.attemptsTo(scrollToPageSelenium());
                     driver.switchTo().defaultContent();
 
                     List<WebElement> elementsSamePersonalAddress = driver.findElements(By.xpath("//*[@class='StripeElement']"));

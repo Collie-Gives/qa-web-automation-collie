@@ -5,14 +5,14 @@ import org.openqa.selenium.By;
 
 import java.time.Duration;
 
-import static com.reto.util.ConstantManager.TIME_OUT_10;
+import static com.reto.util.ConstantManager.*;
 import static net.serenitybdd.screenplay.targets.Target.the;
 
 public class LoginDonation {
 
     public static final Target BUTTON_LOGIN_DONATION = the("Button login donation")
             .located(By.xpath("//button[contains(@class, 'MuiButton-containedPrimary') and text()='DONATE']"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_60));
     public static final Target TXT_EMAIL = the("Email address")
             .located(By.name("email"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
@@ -24,6 +24,6 @@ public class LoginDonation {
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
     public static final Target IMAGE_OTHER = the("Image other")
             .located(By.xpath("//*[@data-test='donationOtherItem']"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
 
 }

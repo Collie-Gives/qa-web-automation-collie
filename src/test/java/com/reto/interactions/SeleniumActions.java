@@ -2,10 +2,7 @@ package com.reto.interactions;
 
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +19,8 @@ public class SeleniumActions {
             WebDriver driver = getProxiedDriver();
             try {
                 WebElement element = driver.findElement(By.xpath(xpathExpression));
+                // Desplazarse hasta el elemento
+                //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", xpathExpression);
                 element.click();
                 element.sendKeys(value);
             } catch (Exception e) {
@@ -47,6 +46,17 @@ public class SeleniumActions {
             }
         });
     }
+    public static Performable scrollToPageSelenium() {
+        return Task.where(actor -> {
+            WebDriver driver = getProxiedDriver();
+            Actions actions = new Actions(driver);
+            try {
+                actions.sendKeys(Keys.PAGE_DOWN).perform();
+            } catch (Exception e) {
+                LOGGER.info("Problems with some of the objects when interacting");
+            }
+        });
+    }
     public static Performable clickField(String xpathExpression) {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
@@ -67,7 +77,7 @@ public class SeleniumActions {
             try {
                 WebElement element = driver.findElement(By.xpath(xpathExpression));
                 actions.moveToElement(element)
-                        .click() // Hacer clic en el campo para enfocar
+                        .click()
                         .keyDown(Keys.CONTROL) // Mantener la tecla Control (Windows) o Command (Mac)
                         .sendKeys("a") // Seleccionar todo el texto
                         .keyUp(Keys.CONTROL) // Liberar la tecla Control
@@ -88,7 +98,7 @@ public class SeleniumActions {
                 element.sendKeys(value);
                 actor.attemptsTo(Wait.aTime(5));
                 actions.moveToElement(element)
-                        .click() // Hacer clic en el campo para enfocar
+                        .click()
                         .keyDown(Keys.CONTROL) // Mantener la tecla Control (Windows) o Command (Mac)
                         .sendKeys("a") // Seleccionar todo el texto
                         .keyUp(Keys.CONTROL) // Liberar la tecla Control
@@ -101,6 +111,13 @@ public class SeleniumActions {
             } catch (Exception e) {
                 LOGGER.info("Problems with some of the objects when interacting: " + value);
             }
+        });
+    }
+
+    public static Performable setZoom(WebDriver driver, String zoomLevel) {
+        return Task.where(actor -> {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("document.body.style.zoom='" + zoomLevel + "'");
         });
     }
 }
