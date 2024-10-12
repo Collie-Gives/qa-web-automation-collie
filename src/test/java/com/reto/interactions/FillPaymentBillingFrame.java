@@ -24,7 +24,6 @@ public class FillPaymentBillingFrame {
     public static Performable inAppFrame() {
         return Task.where(actor -> {
             WebDriver driver = getProxiedDriver();
-            actor.attemptsTo(Wait.aTime(5));
             try {
                 List<WebElement> elements = driver.findElements(By.xpath("//*[text()='Pay with other method']"));
                 if (elements.isEmpty()) {
@@ -42,19 +41,40 @@ public class FillPaymentBillingFrame {
                     actor.attemptsTo(scrollToPageSelenium());
                     driver.switchTo().defaultContent();
 
-                    List<WebElement> elementsSamePersonalAddress = driver.findElements(By.xpath("//*[@class='StripeElement']"));
-                    if (elementsSamePersonalAddress.size() >= 2) {
+                    WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox' and @name='sameAsPersonalAddress']"));
+                    boolean isChecked = checkbox.isSelected();
+                    if (isChecked) {
+                        LOGGER.info("The Billing Information checkbox is checked");
+                    } else {
                         WebElement iframe2 = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[2]"));
                         driver.switchTo().frame(iframe2);
+                        actor.attemptsTo(scrollToPageSelenium());
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
-                        actor.attemptsTo(Wait.aTime(2));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
+                        driver.switchTo().defaultContent();
+                    }
+                }else{
+                    WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox' and @name='sameAsPersonalAddress']"));
+                    boolean isChecked = checkbox.isSelected();
+                    if (isChecked) {
+                        LOGGER.info("The Billing Information checkbox is checked");
+                    } else {
+                        WebElement iframe2 = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]"));
+                        driver.switchTo().frame(iframe2);
+                        actor.attemptsTo(scrollToPageSelenium());
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
+                        actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
                         driver.switchTo().defaultContent();
                     }
                 }
+                actor.attemptsTo(scrollToPageSelenium());
+                actor.attemptsTo(Wait.aTime(2));
                 actor.attemptsTo(clickField("//*[@name='terms']"));
                 actor.attemptsTo(clickField("//button[text()='Purchase']"));
                 actor.attemptsTo(Wait.aTime(10));
