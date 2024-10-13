@@ -11,12 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '19'
+          distribution: 'adopt'
 
       - name: Run tests with Runner 1
         run: ./gradlew clean test --tests com.reto.runners.ParallelRunner -Dcucumber.filter.tags="@regression_register_pipeline" aggregate -i
@@ -25,12 +26,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up JDK
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '19'
+          distribution: 'adopt'
 
       - name: Run tests with Runner 2
         run: ./gradlew clean test --tests com.reto.runners.ParallelRunner -Dcucumber.filter.tags="@regression_donation_pipeline" aggregate -i
