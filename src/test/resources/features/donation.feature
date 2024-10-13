@@ -1,4 +1,42 @@
-Feature: Make donations by individual donation and donation to the team
+Feature: Make donations by individual donation and donation to the team group 1
+
+  @regression
+  Scenario Outline: Make donations by entering the url group 1
+    Given that login with the '<urlDonation>'
+    * that the user open the donation page
+      | userDonation   | passwordDonation   |
+      | <userDonation> | <passwordDonation> |
+    When would you like to make a donation
+      | donation_value   | donation_period   | employer_match   | end_date_donation   |
+      | <donation_value> | <donation_period> | <employer_match> | <end_date_donation> |
+    And I fill in the payment and billing details
+      | number_card   | expiry_date   | security_code   | country   | full_name_billing   | address_line_billing   | city_billing   | state_billing   | zip_code_billing   |
+      | <number_card> | <expiry_date> | <security_code> | <country> | <full_name_billing> | <address_line_billing> | <city_billing> | <state_billing> | <zip_code_billing> |
+    Then Payment confirmation is successful
+
+    Examples:
+      | urlDonation                                                                                               | userDonation                                     | passwordDonation | donation_value | donation_period | end_date_donation | employer_match | number_card      | expiry_date | security_code | country       | full_name_billing   | address_line_billing | city_billing  | state_billing | zip_code_billing |
+      | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Emery_Valentine   | kimberlydawn3+emerson@gmail.com                  | Gobi0501         | 672            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Emerson Metcalf     | 234 Main St          | Austin        | Texas         | 78731            |
+      | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/team/Tsunami                 | kimberlydawn3+pgh1@gmail.com                     | Gobi0501         | 619            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Kimberly Griger     | 234 Main St          | Austin        | Texas         | 78731            |
+
+  @regression
+  Scenario Outline: Make donations by entering the url group 2
+    Given that login with the '<urlDonation>'
+    * that the user open the donation page
+      | userDonation   | passwordDonation   |
+      | <userDonation> | <passwordDonation> |
+    When would you like to make a donation
+      | donation_value   | donation_period   | employer_match   | end_date_donation   |
+      | <donation_value> | <donation_period> | <employer_match> | <end_date_donation> |
+    And I fill in the payment and billing details
+      | number_card   | expiry_date   | security_code   | country   | full_name_billing   | address_line_billing   | city_billing   | state_billing   | zip_code_billing   |
+      | <number_card> | <expiry_date> | <security_code> | <country> | <full_name_billing> | <address_line_billing> | <city_billing> | <state_billing> | <zip_code_billing> |
+    Then Payment confirmation is successful
+
+    Examples:
+      | urlDonation                                                                                               | userDonation                                     | passwordDonation | donation_value | donation_period | end_date_donation | employer_match | number_card      | expiry_date | security_code | country       | full_name_billing   | address_line_billing | city_billing  | state_billing | zip_code_billing |
+      | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Luke_Lowe         | kimberlydawn3+clover@gmail.com                   | Gobi0501         | 79             | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Clover Metcalf      | 4508 Finley Dr       | Austin        | Texas         | 78731            |
+      | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Ada_Doyle         | kimberlydawn3+July23@gmail.com                   | Gobi0501         | 771            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Kim Griger          | 234 Main St          | Austin        | Texas         | 78731            |
 
   @regression_donation
   Scenario Outline: Make donations by entering the url
@@ -16,7 +54,7 @@ Feature: Make donations by individual donation and donation to the team
 
     Examples:
       | urlDonation                                                                                               | userDonation                                     | passwordDonation | donation_value | donation_period | end_date_donation | employer_match | number_card      | expiry_date | security_code | country       | full_name_billing   | address_line_billing | city_billing  | state_billing | zip_code_billing |
-      #| https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Emery_Valentine   | kimberlydawn3+emerson@gmail.com                  | Gobi0501         | 672            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Emerson Metcalf     | 234 Main St          | Austin        | Texas         | 78731            |
+      | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Emery_Valentine   | kimberlydawn3+emerson@gmail.com                  | Gobi0501         | 672            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Emerson Metcalf     | 234 Main St          | Austin        | Texas         | 78731            |
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/team/Tsunami                 | kimberlydawn3+pgh1@gmail.com                     | Gobi0501         | 619            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Kimberly Griger     | 234 Main St          | Austin        | Texas         | 78731            |
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Luke_Lowe         | kimberlydawn3+clover@gmail.com                   | Gobi0501         | 79             | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Clover Metcalf      | 4508 Finley Dr       | Austin        | Texas         | 78731            |
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Ada_Doyle         | kimberlydawn3+July23@gmail.com                   | Gobi0501         | 771            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Kim Griger          | 234 Main St          | Austin        | Texas         | 78731            |

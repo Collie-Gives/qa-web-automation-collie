@@ -12,7 +12,7 @@ public class LoginDonation {
 
     public static final Target BUTTON_LOGIN_DONATION = the("Button login donation")
             .located(By.xpath("//button[contains(@class, 'MuiButton-containedPrimary') and text()='DONATE']"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_60));
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_30));
     public static final Target TXT_EMAIL = the("Email address")
             .located(By.name("email"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));

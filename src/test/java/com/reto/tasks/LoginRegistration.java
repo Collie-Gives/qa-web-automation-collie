@@ -11,7 +11,7 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.LoginRegistration.*;
-import static com.reto.userinterfaces.Register.BUTTON_CONTINUE;
+import static com.reto.userinterfaces.Register.BUTTON_MAS;
 import static com.reto.userinterfaces.Register.BUTTON_REGISTER_NOW;
 
 public class LoginRegistration {
@@ -20,6 +20,9 @@ public class LoginRegistration {
 
     public static Performable inApp() {
         return Task.where(actor -> {
+            actor.attemptsTo(Ensure.that(BUTTON_REGISTER_NOW).isDisplayed()
+                    .orElseThrow(new Throwable("The login button is not visible."))
+            );
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_REGISTER_NOW)).andIfSo(Click.on(BUTTON_REGISTER_NOW)));
             actor.attemptsTo(Check.whether(Visibility.of(TXT_EMAIL)).andIfSo(
                     Enter.theValue(getInstance().getDatosPrueba().get("userRegistration")).into(TXT_EMAIL))
@@ -30,8 +33,7 @@ public class LoginRegistration {
             actor.attemptsTo(Click.on(BOTON_LOGIN));
             actor.attemptsTo(Wait.aTime(10));
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_REGISTER_NOW)).andIfSo(Click.on(BUTTON_REGISTER_NOW)));
-            actor.attemptsTo(Wait.aTime(10));
-            actor.attemptsTo(Ensure.that(BUTTON_CONTINUE).isDisplayed());
+            actor.attemptsTo(Ensure.that(BUTTON_MAS).isDisplayed());
         });
     }
 }

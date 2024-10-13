@@ -42,11 +42,11 @@ public class RegistrationStepDefinition {
         getInstance().getDatosPrueba().put("userRegistration", information.get(0).get("userRegistration"));
         getInstance().getDatosPrueba().put("passwordRegistration", information.get(0).get("passwordRegistration"));
         if(Serenity.sessionVariableCalled("urlGeneralSettings") == null){
-            theActorInTheSpotlight().attemptsTo(Wait.aTime(15));
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
             theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
         }else{
             theActorCalled("User").attemptsTo(Open.url(Serenity.sessionVariableCalled("urlGeneralSettings")));
-            theActorInTheSpotlight().attemptsTo(Wait.aTime(20));
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
             theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
         }
     }

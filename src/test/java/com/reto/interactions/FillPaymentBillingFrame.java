@@ -39,6 +39,7 @@ public class FillPaymentBillingFrame {
                     }
                     actor.attemptsTo(clickField("//*[@id='Field-cvcInput']"));
                     actor.attemptsTo(scrollToPageSelenium());
+                    actor.attemptsTo(Wait.aTime(2));
                     driver.switchTo().defaultContent();
 
                     WebElement checkbox = driver.findElement(By.xpath("//input[@type='checkbox' and @name='sameAsPersonalAddress']"));
@@ -49,10 +50,15 @@ public class FillPaymentBillingFrame {
                         WebElement iframe2 = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[2]"));
                         driver.switchTo().frame(iframe2);
                         actor.attemptsTo(scrollToPageSelenium());
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
                         driver.switchTo().defaultContent();
                     }
@@ -65,10 +71,15 @@ public class FillPaymentBillingFrame {
                         WebElement iframe2 = driver.findElement(By.xpath("(//iframe[contains(@name, '__privateStripeFrame')])[1]"));
                         driver.switchTo().frame(iframe2);
                         actor.attemptsTo(scrollToPageSelenium());
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-nameInput']", getInstance().getDatosPrueba().get("full_name_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-addressLine1Input']", getInstance().getDatosPrueba().get("address_line_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-localityInput']", getInstance().getDatosPrueba().get("city_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-administrativeAreaInput']", getInstance().getDatosPrueba().get("state_billing")));
+                        actor.attemptsTo(Wait.aTime(1));
                         actor.attemptsTo(clearAndWriteField("//*[@id='Field-postalCodeInput']", getInstance().getDatosPrueba().get("zip_code_billing")));
                         driver.switchTo().defaultContent();
                     }

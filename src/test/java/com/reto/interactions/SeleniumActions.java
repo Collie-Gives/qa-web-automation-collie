@@ -85,7 +85,7 @@ public class SeleniumActions {
                         .perform();
                 actions.moveToElement(element).sendKeys(value).perform();
             } catch (Exception e) {
-                LOGGER.info("Problems with some of the objects when interacting: " + value);
+                LOGGER.info("Problems with some of the objects when interacting {}: ", value);
             }
         });
     }
@@ -109,15 +109,9 @@ public class SeleniumActions {
                 element.sendKeys(Keys.ARROW_DOWN);
                 element.sendKeys(Keys.ENTER);
             } catch (Exception e) {
-                LOGGER.info("Problems with some of the objects when interacting: " + value);
+                LOGGER.info("Problems with some of the objects when interacting {}: ", value);
             }
         });
     }
 
-    public static Performable setZoom(WebDriver driver, String zoomLevel) {
-        return Task.where(actor -> {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("document.body.style.zoom='" + zoomLevel + "'");
-        });
-    }
 }

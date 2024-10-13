@@ -11,6 +11,7 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.LoginDonation.*;
+import static net.serenitybdd.screenplay.ensure.Ensure.that;
 
 
 public class LoginDonation {
@@ -19,6 +20,9 @@ public class LoginDonation {
 
     public static Performable inApp() {
         return Task.where(actor -> {
+            actor.attemptsTo(Ensure.that(BUTTON_LOGIN_DONATION).isDisplayed()
+                    .orElseThrow(new Throwable("The login button is not visible."))
+            );
             actor.attemptsTo(Check.whether(Visibility.of(BUTTON_LOGIN_DONATION)).andIfSo(Click.on(BUTTON_LOGIN_DONATION)));
             actor.attemptsTo(Check.whether(Visibility.of(TXT_EMAIL)).andIfSo(
                     Enter.theValue(getInstance().getDatosPrueba().get("userDonation")).into(TXT_EMAIL))
@@ -28,7 +32,7 @@ public class LoginDonation {
             );
             actor.attemptsTo(Click.on(BOTON_LOGIN));
             actor.attemptsTo(Wait.aTime(10));
-            actor.attemptsTo(Ensure.that(IMAGE_OTHER).isDisplayed());
+            actor.attemptsTo(that(IMAGE_OTHER).isDisplayed());
         });
     }
 }

@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chrome, firefox]  # Puedes agregar más navegadores si lo deseas
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '19'  # Ajusta la versión según sea necesario
+
+      - name: Install dependencies
+        run: ./gradlew clean build
+
+      - name: Run tests
+        run: |
+          ./gradlew clean test --tests "com.reto.runners.ParallelRunner" -Dcucumber.filter.tags="@regression" aggregate -i

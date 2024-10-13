@@ -55,7 +55,7 @@ public class Register {
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
     public static final Target BUTTON_REGISTER_NOW = the("Button register now")
             .located(By.xpath("(//button[contains(.,'Register Now')])[1]"))
-            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
+            .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_30));
     public static final Target OPTION_PARTICIPATE = the("Option participate")
             .locatedBy("//*[text()='{0}']")
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
