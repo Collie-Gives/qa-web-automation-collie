@@ -1,7 +1,7 @@
 Feature: Registering for to select products to cart
   I as a user want registering for to select products to cart
 
-  @regression
+  @regression_register_pipeline
   Scenario Outline: Registration and ticketing sales by entering the url group 1
     Given that login with the '<urlRegistration>'
     * that the user open the registering page
@@ -28,7 +28,7 @@ Feature: Registering for to select products to cart
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/experience/cm1gu0wdu039n0alb8jel9br0 | kimberlydawn3+emerson@gmail.com | Gobi0501             |            | 5129879876   | Male   | 234 Main St | Austin | Texas | 78731    | Emerson Metcalf  | Continue without a team |           |                       | 341            | One-Time        |                   |                | 4242 4242 4242 4242 | 10 / 29     | 111           | United States | Emerson Metcalf   | 234 Main St          | Austin       | Texas         | 78731            |
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/experience/cm1gu0wdu039n0alb8jel9br0 | kimberlydawn3+pgh1@gmail.com    | Gobi0501             |            | 5129879876   | Female | 234 Main St | Austin | Texas | 78731    | Kimberly Griger  | Continue without a team |           |                       | 710            | One-Time        |                   |                | 5555 5555 5555 4444 | 10 / 29     | 111           | United States | Kimberly Griger   | 234 Main St          | Austin       | Texas         | 78731            |
 
-  @regression
+  @regression_register_pipeline
   Scenario Outline: Registration and ticketing sales by entering the url group 2
     Given that login with the '<urlRegistration>'
     * that the user open the registering page

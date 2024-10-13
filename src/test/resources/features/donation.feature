@@ -1,6 +1,6 @@
 Feature: Make donations by individual donation and donation to the team group 1
 
-  @regression
+  @regression_donation_pipeline
   Scenario Outline: Make donations by entering the url group 1
     Given that login with the '<urlDonation>'
     * that the user open the donation page
@@ -19,7 +19,7 @@ Feature: Make donations by individual donation and donation to the team group 1
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/fundraiser/Emery_Valentine   | kimberlydawn3+emerson@gmail.com                  | Gobi0501         | 672            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Emerson Metcalf     | 234 Main St          | Austin        | Texas         | 78731            |
       | https://possum-kingdom-open-water-swim-4lzlpd.public-staging.colliegives.com/team/Tsunami                 | kimberlydawn3+pgh1@gmail.com                     | Gobi0501         | 619            | One-Time        |                   |                | 5555555555554444 | 10 / 29     | 111           | United States | Kimberly Griger     | 234 Main St          | Austin        | Texas         | 78731            |
 
-  @regression
+  @regression_donation_pipeline
   Scenario Outline: Make donations by entering the url group 2
     Given that login with the '<urlDonation>'
     * that the user open the donation page
