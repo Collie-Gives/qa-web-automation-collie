@@ -9,8 +9,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,14 +18,17 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Run tests with Runner 1
         run: ./gradlew clean test --tests com.reto.runners.ParallelRunner -Dcucumber.filter.tags="@regression_register_pipeline" aggregate -i
 
   job2:
     runs-on: windows-latest
-    env:
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -37,6 +38,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Run tests with Runner 2
         run: ./gradlew clean test --tests com.reto.runners.ParallelRunner -Dcucumber.filter.tags="@regression_donation_pipeline" aggregate -i
