@@ -1,10 +1,19 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-single-page-report:4.1.14"
+    }
+}
+
 plugins {
     id "java"
     id "idea"
-    id "net.serenity-bdd.serenity-gradle-plugin" version "4.2.1"
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.1.14"
 }
 
-group = 'com.reto'
+group = 'co.dlacademy'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -14,48 +23,48 @@ repositories {
 ext {
     serenityCoreVersion = '4.2.1'
     junitVersion = '5.10.0'
-    assertJVersion = '3.23.1'
+    assertJVersion = '3.26.0'
 }
 
 dependencies {
-    testImplementation "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
-    testImplementation "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
-    testImplementation "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}"
-    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}"
-    testImplementation "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
-    testImplementation "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testImplementation "org.assertj:assertj-core:${assertJVersion}"
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    //SERENITY
+    testImplementation  "net.serenity-bdd:serenity-core:${serenityCoreVersion}"
+    testImplementation  "net.serenity-bdd:serenity-junit5:${serenityCoreVersion}"
+    testImplementation  "net.serenity-bdd:serenity-cucumber:${serenityCoreVersion}"
+    //SCREENPLAY
+    testImplementation  "net.serenity-bdd:serenity-screenplay:${serenityCoreVersion}"
+    testImplementation  "net.serenity-bdd:serenity-screenplay-webdriver:${serenityCoreVersion}"
+    testImplementation  "net.serenity-bdd:serenity-ensure:${serenityCoreVersion}"
+    //JUNIT
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:${junitVersion}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'junit:junit:4.13.2'
+    //ASSERT
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation "org.assertj:assertj-core:${assertJVersion}"
+
+    //ADICIONAL
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
     testImplementation('org.slf4j:slf4j-simple:2.0.7')
     testImplementation 'org.json:json:20240303'
-    testImplementation 'org.seleniumhq.selenium:selenium-java:4.25.0'
-
 }
 
 test {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-    systemProperties(System.getProperties())
-    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
-    forkEvery = 1
+    systemProperties System.getProperties()
 }
 
 tasks.withType(Test).configureEach {
     maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
-    forkEvery = 1
+    forkEvery = 10
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.fork = true
+serenity {
+    reports = ["single-page-html"]
 }
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
 
-gradle.startParameter.continueOnFailure = true
 test.finalizedBy(aggregate)
+
+gradle.startParameter.continueOnFailure = true

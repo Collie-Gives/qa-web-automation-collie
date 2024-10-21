@@ -50,6 +50,20 @@ public class RegistrationStepDefinition {
             theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
         }
     }
+
+    @And("that the user open page")
+    public void thatTheUserAccessesPage(List<Map<String, String>> information) {
+        getInstance().getDatosPrueba().put("userRegistration", information.get(0).get("userRegistration"));
+        getInstance().getDatosPrueba().put("passwordRegistration", information.get(0).get("passwordRegistration"));
+        if(Serenity.sessionVariableCalled("urlGeneralSettings") == null){
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
+            theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
+        }else{
+            theActorCalled("User").attemptsTo(Open.url(Serenity.sessionVariableCalled("urlGeneralSettings")));
+            theActorInTheSpotlight().attemptsTo(Wait.aTime(10));
+            theActorInTheSpotlight().attemptsTo(LoginRegistration.inApp());
+        }
+    }
     @And("that the user open the donation page")
     public void thatTheUserAccessesTheDonationPage(List<Map<String, String>> information) {
         getInstance().getDatosPrueba().put("userDonation", information.get(0).get("userDonation"));

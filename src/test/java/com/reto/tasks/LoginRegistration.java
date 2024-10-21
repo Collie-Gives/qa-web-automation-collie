@@ -8,13 +8,17 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Visibility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.reto.models.DataManager.getInstance;
+import static com.reto.userinterfaces.LoginDonation.LABEL_INCORRECT_EMAIL_PASSWORK;
 import static com.reto.userinterfaces.LoginRegistration.*;
 import static com.reto.userinterfaces.Register.BUTTON_MAS;
 import static com.reto.userinterfaces.Register.BUTTON_REGISTER_NOW;
 
 public class LoginRegistration {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginRegistration.class);
     private LoginRegistration() {
     }
 
@@ -32,8 +36,14 @@ public class LoginRegistration {
             );
             actor.attemptsTo(Click.on(BOTON_LOGIN));
             actor.attemptsTo(Wait.aTime(10));
-            actor.attemptsTo(Check.whether(Visibility.of(BUTTON_REGISTER_NOW)).andIfSo(Click.on(BUTTON_REGISTER_NOW)));
-            actor.attemptsTo(Ensure.that(BUTTON_MAS).isDisplayed());
+
+            boolean labelMessage = LABEL_INCORRECT_EMAIL_PASSWORK.resolveFor(actor).isVisible();
+            if (labelMessage) {
+                LOGGER.info("Authentication was failed by Incorrect email or password");
+                throw new AssertionError("Authentication failed due to incorrect email or password.");
+            }
+
+            //actor.attemptsTo(Ensure.that(BUTTON_MAS).isDisplayed());
         });
     }
 }

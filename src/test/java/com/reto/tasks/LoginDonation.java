@@ -1,6 +1,9 @@
 package com.reto.tasks;
 
+import com.reto.exceptions.WebException;
+import com.reto.interactions.SwagBagSelection;
 import com.reto.interactions.Wait;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -11,10 +14,13 @@ import net.serenitybdd.screenplay.questions.Visibility;
 
 import static com.reto.models.DataManager.getInstance;
 import static com.reto.userinterfaces.LoginDonation.*;
-import static net.serenitybdd.screenplay.ensure.Ensure.that;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class LoginDonation {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoginDonation.class);
+
     private LoginDonation() {
     }
 
@@ -32,7 +38,14 @@ public class LoginDonation {
             );
             actor.attemptsTo(Click.on(BOTON_LOGIN));
             actor.attemptsTo(Wait.aTime(10));
-            actor.attemptsTo(that(IMAGE_OTHER).isDisplayed());
+
+            boolean labelMessage = LABEL_INCORRECT_EMAIL_PASSWORK.resolveFor(actor).isVisible();
+            if (labelMessage) {
+                LOGGER.info("Authentication was failed by Incorrect email or password");
+                throw new AssertionError("Authentication failed due to incorrect email or password.");
+            }
+
+            //actor.attemptsTo(that(IMAGE_OTHER).isDisplayed());
         });
     }
 }

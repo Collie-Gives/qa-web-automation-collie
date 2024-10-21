@@ -1,4 +1,4 @@
-package com.reto.runners;
+package features.runner_examples.runners_register;
 
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/registration_selecting_campaign.feature",
+        features = "src/test/resources/features/registration.feature",
         glue = "com.reto.stepdefinitions",
-        tags = "@E2E_REGISTRATION_SELECTING_CAMPAIGN",
+        tags = "@regression_registration",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
-public class RegisterSelectCampaignRunner {
+public class RegisterRunner {
 }

@@ -22,6 +22,8 @@ public class LoginDonation {
     public static final Target BOTON_LOGIN = the("Button login")
             .located(By.xpath("//button[@type='submit']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_10));
+    public static final Target LABEL_INCORRECT_EMAIL_PASSWORK = the("Label incorrect email or password")
+            .located(By.xpath("(//*[text()='Incorrect email or password'])[2]"));
     public static final Target IMAGE_OTHER = the("Image other")
             .located(By.xpath("//*[@data-test='donationOtherItem']"))
             .waitingForNoMoreThan(Duration.ofSeconds(TIME_OUT_20));
